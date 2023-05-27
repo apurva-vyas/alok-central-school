@@ -1,65 +1,97 @@
 *{
     margin: 0;
     padding: 0;
+   font-family: 'poppins', sans-serif;
+   box-sizing: border-box;
+   text-align: left;
+   display: inline-block;  
+   font-family: Helvetica, sans-serif;
 }
 
 .admissions{
     width: 100%;
     text-decoration: none;   
-}
-
-
-.admissions .carousel-item img{
-    height: 500px;
-    width: 100%;
-    display: block;
+    height: 100%; 
+   
+    text-align: center;
+    background-image: url('../../assets/school5.jpg');
+    background-position: cover;
     background-size: cover!important;
-    background-position: center;
-    background-repeat: no-repeat;  
-    filter: blur(4px);
+   
+    padding: 60px;    
+    padding-left: 120px;
+   
 }
 
-.container{
-    text-align: center;
-    margin: 0;
-    padding: 0;
+form{
+    width: 90%;
+    max-width:600px;
+    margin-top: 170px;
 }
 
-l#formItem label {
-    display: block;
-    text-align: center;
-    line-height: 150%;
-    font-size: .85em;
-    font: bold;
+.input-group{
+    margin-bottom: 30px;
+    position: relative;
 }
 
-.alert-danger{
-    background-color:#f44336;
-}
-.alert{
+input{
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #fff;
     color: #fff;
-    margin-bottom: 15px;
-    text-align: left;
+    background: transparent;
+    font-size: 15px;
 }
 
-.form-control{
-    margin-bottom: 20px;
-    width: 50%;
-    display: initial;
-    border: 1px solid white;
+label{
+    height: 100%;
+    position: absolute;
+    left:0;
+    top: 0;
+    padding: 10px;
+    color: #fff;
+    cursor: text;
+    transition: 0.2s;
 }
 
-.btn{
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: capitalize;
-    display: inline-block;
-    padding: 12px 30px;
-    line-height: 1px;
-    margin: 20px 10px;
-    color: white;
-    border: 1px solid white;
-    border-radius: 50px;
-    background-color: #B8894A;
+button{
+    padding: 10px 0;
+    color: #fff;
+    outline: none;
+    background: burlywood;
+    border: 1px solid #fff;
+    width: 100%;
+    cursor:pointer;
+    text-align: center;
 }
+
+input:focus~label,
+input:valid~label,
+textarea:valid~label,
+input:focus~ul,
+input:valid~ul{
+    top:-35px;
+font-size: 14px;
+}
+
+
+
+.form-select{
+    width: 100%;
+    transition: 0.2s;
+    background-color: transparent;
+    cursor: pointer;
+   color: #fff;
+    left:0;
+    top: 0;
+    overflow: none;
+    height: 100%;
+}
+
+select option {
+    margin: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
