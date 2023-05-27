@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.service{
+    width: 100%;
+    text-decoration: none;   
+}
+
+
+.service .carousel-item img{
+    height: 500px;
+    width: 100%;
+    display: block;
+    background-size: cover!important;
+    background-position: center;
+    background-repeat: no-repeat;  
+    filter: blur(4px);
+}
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.card {
+    border: 5px solid #585858;
+    margin: 10%;
+    padding: auto;
+    width: 300px;
+    height: 300px;
+}
+.card-title{
+    text-align: center;
+}
+.inner {
+    overflow: hidden;
+}
+
+.inner img {
+    transition: all 1.5s ease;
+    height: 300px;
+}
+
+.inner:hover img {
+    transform: scale(1.5);
+}

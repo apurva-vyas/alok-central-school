@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.admissions{
+    width: 100%;
+    text-decoration: none;   
+}
+
+
+.admissions .carousel-item img{
+    height: 500px;
+    width: 100%;
+    display: block;
+    background-size: cover!important;
+    background-position: center;
+    background-repeat: no-repeat;  
+    filter: blur(4px);
+}
+
+.container{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+l#formItem label {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+    font: bold;
+}
+
+.alert-danger{
+    background-color:#f44336;
+}
+.alert{
+    color: #fff;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-control{
+    margin-bottom: 20px;
+    width: 50%;
+    display: initial;
+    border: 1px solid white;
+}
+
+.btn{
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    display: inline-block;
+    padding: 12px 30px;
+    line-height: 1px;
+    margin: 20px 10px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    background-color: #B8894A;
+}

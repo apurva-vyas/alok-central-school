@@ -1,0 +1,77 @@
+
+
+.card {
+    border: 5px solid #585858;
+    margin: 10%;
+    padding: auto;
+    width: 200px;
+}
+
+.inner {
+    overflow: hidden;
+}
+
+.inner img {
+    transition: all 1.5s ease;
+}
+
+.inner:hover img {
+    transform: scale(1.5);
+}
+
+.main-feature-box {
+    margin-bottom: 30px;
+    background-color: white;
+    box-shadow: 0 10px 55px 5px rgba(137, 173, 255, 0.2);
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1;
+    transition: .5s;
+    overflow: hidden;
+
+}
+
+.main-feature-box .icon {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
+    background-color: #B8894A;
+    color: white;
+    transition: .5s;
+    font-size: 25px;
+    line-height: 60px;
+}
+
+.main-feature-box .h3 {
+    font-size: 19px;
+    font-weight: 700;
+    padding-bottom: 7px;
+    position: relative;
+}
+
+
+.main-feature-box .p {
+    font-size: 14px;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.section {
+    margin: auto auto 0 auto;
+    font-family: sans-serif;    
+    display: flex;
+    justify-content:space-between;
+    padding: 40px;
+    
+    height: fit-content;
+}
+
+
+
+.section img{
+    height: 250px;
+    border: 5px solid white;
+}
