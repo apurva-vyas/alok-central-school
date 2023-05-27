@@ -24,7 +24,7 @@ color:#78582F;
     position: absolute;
     padding: 15px;
     z-index: 2;
-  transition: 0.33s;
+    transition: 0.33s;
     background-color:#fff;
     list-style: none;
     display: none;
