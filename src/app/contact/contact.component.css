@@ -35,7 +35,7 @@ form{
     position: relative;
 }
 
-input, textarea{
+input{
     width: 100%;
     padding: 10px;
     outline: 0;
@@ -68,8 +68,8 @@ button{
 }
 
 input:focus~label,
-input:valid~label,
-textarea:valid~label{
+input:valid~label
+{
     top:-35px;
 font-size: 14px;
 }

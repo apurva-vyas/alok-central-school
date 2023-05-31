@@ -9,7 +9,10 @@ export class AdmissionsComponent implements OnInit{
   ngOnInit(): void {
     
   }
-
+ name!:string;
+ number!:string;
+ email!:string;
+ 
   submit(){
     
   }

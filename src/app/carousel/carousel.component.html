@@ -1,64 +1,60 @@
-<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="1" class="active"></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="2" class="active"></li>
-        
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="/assets/school6.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
+<ngb-carousel #carousel [interval]="3000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
 
-                <div class="carousel-content-conatiner">
-                    <h2>
-                        Welcome to Alok Central Secondary School</h2>
-                    <p>
-                        The Alok Institution campuses stays abreast of latest developments in technologies and
-                        learning
-                        systems so as to give our students highest knowledge skills and attributes they need to
-                        succeed
-                        in their foundation of education. We strive to develop students who are prepared for the
-                        future,
-                        ready for changing needs of the education environment, and trained for a life of ongoing
-                        learning and academic success.
-                    </p>
-                <div class="buttons">
-                    <a href="" class="button1" style="background-color: #B8894A;" routerLink="services"> Our Services</a>
-                    <a href="" class="button1" style="background-color: #B8894A;" routerLink="contact"> Contact Us</a>
-                </div>
+    <ng-template ngbSlide>
 
-                </div>
+        <div class="picsum-img-wrapper">
+
+         <img [src]="images[0]" alt="Random first slide" />
+
             </div>
+
+        <div class="carousel-caption">
+
+            <h2>
+                Welcome to Alok Central Secondary School</h2>
+            <p>
+                The Alok Institution campuses stays abreast of latest developments in technologies and
+                learning
+                systems so as to give our students highest knowledge skills and attributes they need to
+                succeed
+                in their foundation of education. We strive to develop students who are prepared for the
+                future,
+                ready for changing needs of the education environment, and trained for a life of ongoing
+                learning and academic success.
+            </p>
+        <div class="buttons">
+            <a href="" class="button1" style="background-color: #B8894A;" routerLink="services"> Our Services</a>
+            <a href="" class="button1" style="background-color: #B8894A;" routerLink="contact"> Contact Us</a>
+        </div>
         </div>
 
-        <div class="carousel-item">
-            <img src="/assets/school2.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
+        </ng-template>
 
-                <div class="carousel-content-conatiner">
-                    <h2>
-                        Self Perform Expertise</h2>
-                    <p>
-                        The Alok Institution campuses stays abreast of latest developments in technologies and
-                        learning
-                        systems so as to give our students highest knowledge skills and attributes they need to
-                        succeed
-                        in their foundation of education. We strive to develop students who are prepared for the
-                        future,
-                        ready for changing needs of the education environment, and trained for a life of ongoing
-                        learning and academic success.
-                    </p>
-                    <div class="buttons">
-                        <a href="" class="button1"> Our Services</a>
-                        <a href="" class="button1"> Contact Us</a>
-                    </div>
-                </div>
+    <ng-template ngbSlide>
+
+        <div class="picsum-img-wrapper">
+
+            <img [src]="images[1]" alt="Random first slide" />
+
             </div>
-        </div>
 
+        <div class="carousel-caption">
 
-    </div>
-   
-   
-</div>
+            <h2>
+                Self Perform Expertise</h2>
+            <p>
+                The Alok Institution campuses stays abreast of latest developments in technologies and
+                learning systems so as to give our students highest knowledge skills and attributes they need to
+                succeed in their foundation of education. We strive to develop students who are prepared for the
+                future, ready for changing needs of the education environment, and trained for a life of ongoing
+                learning and academic success.
+            </p>
+            <div class="buttons">
+                <a href="" class="button1"> Our Services</a>
+                <a href="" class="button1"> Contact Us</a>
+            </div>
+            </div>
+
+        </ng-template>
+
+</ngb-carousel>

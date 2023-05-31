@@ -13,6 +13,8 @@ import { AdmissionsComponent } from './admissions/admissions.component';
 import { FormsModule }   from '@angular/forms';
 import { ContactComponent } from './contact/contact.component';
 import { CommonModule } from '@angular/common';
+import {HttpClientModule , HttpErrorResponse} from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -23,7 +25,7 @@ import { CommonModule } from '@angular/common';
     BsNavbarComponent,    
     FeaturesComponent,
     FooterComponent,
-    CarouselComponent,
+    
     AboutPageComponent,
     ServicesComponent,
     HomeComponent,
@@ -34,10 +36,15 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule,
+    NgbModule,
+    CarouselComponent
+ 
  
   ],
   providers: [],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }
