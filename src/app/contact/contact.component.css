@@ -45,6 +45,7 @@ input{
     font-size: 15px;
 }
 
+
 label{
     height: 100%;
     position: absolute;
@@ -69,6 +70,13 @@ button{
 
 input:focus~label,
 input:valid~label
+{
+    top:-35px;
+font-size: 14px;
+}
+
+textarea:focus~label,
+textarea:valid~label
 {
     top:-35px;
 font-size: 14px;
