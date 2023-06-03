@@ -25,20 +25,23 @@ header{
     position: absolute;
     z-index: 99999;
     width:100%;
+   
+    
 }
 
 header .nav-item .nav-link{
     font-size: 16px;
     font-weight: 600;
-    color:#78582F;
-    margin-left: 0;              
+    color:#800020;
+    margin-left: 0;  
+        
 } 
 
 
 .navbar-toggler{
 outline: none!important;
 border: none!important;
-color: var(--warning)!important;
+color: #fff;
 box-shadow: none!important;
 border-radius: none!important;
 }

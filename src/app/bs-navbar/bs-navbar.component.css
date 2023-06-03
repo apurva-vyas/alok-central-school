@@ -1,5 +1,5 @@
 .navbar-collapse ul li a:hover{    
-    color:white;    
+    color:black;    
 }
 
 .navbar-collapse ul li ul li a:hover{    
@@ -9,7 +9,7 @@
 header .active{
     font-size: 16px;
     font-weight: 600;
-    color:#78582F;
+    color:#800020;
     margin-left: 0;
         
 } 
@@ -18,6 +18,64 @@ header .active{
 font-size: 14px;
 font-weight: 600;
 color:#78582F;
+}
+
+
+.navbar-toggler-icon {
+    background-image: none!important;
+    background-color: var(--bs-gray-800);
+    height: 3px;
+    width: 25px;
+    margin: 10px 0;
+    position: relative;
+    transition: all 0.35s ease-out;
+    transform-origin: center;
+  }
+  
+  .navbar-toggler-icon::before {
+    display: block;
+    background-color: var(--bs-gray-800);
+    height: 3px;
+    content: "";
+    position: relative;
+    top: -7px;
+    transition: all 0.15s ease-out;/*taken down to hide quicker*/
+    transform-origin: center;
+  }
+  
+  .navbar-toggler-icon::after {
+    display: block;
+    background-color: var(--bs-gray-800);
+    height: 3px;
+    content: "";
+    position: relative;
+    top: 4px;
+    transition: all 0.35s ease-out;
+    transform-origin: center;
+  }
+  
+  .navbar .navbar-toggler-icon,
+  .navbar .navbar-toggler-icon::before,
+  .navbar .navbar-toggler-icon::after {
+    background-color: var(--bs-gray-100);
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    transform: rotate(45deg);
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+    opacity: 0;
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+    transform: rotate(-90deg) translateX(7px);
+  }
+
+.navbar-collapse ul li{
+   
+    padding: 10px;
+    
 }
 
 .navbar-collapse ul li ul{
@@ -47,18 +105,25 @@ color:#78582F;
     }
 
     header .navbar-collapse{
+        margin: 10px;
         position: absolute;
         top:100%; left:0; right: 0;
-        background-color: #fff;
+        background-color: #362815;;
         border-top: 1px solid rgba(0,0,0,.1);
     }
 
     header .navbar-collapse ul li ul{
         position: relative;
         width: 100%;
+        background-color: #362815;
     }
 
     header .navbar-collapse ul li ul li{
        background: #eee;
+    }
+
+    .navbar{
+        background-color: #362815;
+        margin: 20px;
     }
 }

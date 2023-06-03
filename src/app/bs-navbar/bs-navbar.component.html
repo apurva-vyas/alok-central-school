@@ -1,45 +1,46 @@
 <header>
-<nav class="navbar navbar-expand-md">
-    <div class="container" >
-    <a class="navbar-brand" ><img height="150" ronded src="/assets/school_logo.png" thumbnail width="150"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ms-auto mb-2 mb-md-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">HOME</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" >ABOUT</a>
-            <ul>             
+  <nav class="navbar navbar-expand-md">
+    <div class="container">
+      <a class="navbar-brand"><img height="120" ronded src="/assets/school_logo.png" thumbnail width="120"></a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+        (click)="isMenuCollapsed = !isMenuCollapsed">
+        <span class="navbar-toggler-icon my-toggle"></span>
+      </button>
+      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page">ABOUT</a>
+            <ul>
               <li><a class="nav-menu" routerLink="about">SCHOOL INFO</a></li>
               <li><a class="nav-menu" href="#">10th BOARD RESULTS</a></li>
-              <li><a class="nav-menu" href="#" >12th BOARD RESULTS</a></li>
+              <li><a class="nav-menu" href="#">12th BOARD RESULTS</a></li>
             </ul>
           </li>
-        
-        <li class="nav-item">
-          <a class="nav-link">ADMISSIONS</a>
-          <ul class="Dropdown" mdbDropdown>
-            <li><a class="nav-menu" routerLink="admission">CBSE ADMISSIONS</a></li>
-            <li><a class="nav-menu" routerLink="admission">RBSE ADMISSIONS</a></li>           
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="services">FACILITIES</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">GALLERY</a>
-        </li>
-        <li class="nav-item">
+
+          <li class="nav-item">
+            <a class="nav-link">ADMISSIONS</a>
+            <ul class="Dropdown" mdbDropdown>
+              <li><a class="nav-menu" routerLink="admission">CBSE ADMISSIONS</a></li>
+              <li><a class="nav-menu" routerLink="admission">RBSE ADMISSIONS</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="services">FACILITIES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">GALLERY</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" routerLink='contact'>CONTACT US</a>
           </li>
-      </ul>
-     
+        </ul>
+
+      </div>
     </div>
-    </div>
-    </nav>
-    
-  </header>
-  
+  </nav>
+
+</header>

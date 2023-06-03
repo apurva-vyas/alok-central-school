@@ -13,15 +13,15 @@ import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } fr
 
 @Component({
 
-  selector: 'app-carousel',
+  selector: 'app-carousel',
 
-  templateUrl: './carousel.component.html',
+  templateUrl: './carousel.component.html',
 
-  styleUrls: ['./carousel.component.css'],
+  styleUrls: ['./carousel.component.css'],
 
-  standalone: true,
+  standalone: true,
 
-  imports: [NgbCarouselModule, NgFor, FormsModule],
+  imports: [NgbCarouselModule, NgFor, FormsModule],
 
 
 
@@ -34,80 +34,71 @@ import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } fr
 
 export class CarouselComponent {
 
-  @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
+  @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
 
 
 
 
-  images = ['/assets/school6.jpg', '/assets/school2.jpg'];
+  images = ['/assets/school6.jpg', '/assets/School7.jpg','/assets/School8.jpg'];
 
 
 
 
-  paused = false;
+  paused = false;
 
-  unpauseOnArrow = true;
+  unpauseOnArrow = true;
 
-  pauseOnIndicator = true;
+  pauseOnIndicator = true;
 
-  pauseOnHover = true;
+  pauseOnHover = true;
 
-  pauseOnFocus = true;
-
-
-
-
-
-  togglePaused() {
-
-    if (this.paused) {
-
-      this.carousel.cycle();
-
-    } else {
-
-      this.carousel.pause();
-
-    }
-
-    this.paused = !this.paused;
-
-  }
+  pauseOnFocus = true;
 
 
 
 
-  onSlide(slideEvent: NgbSlideEvent) {
 
-    if (
+  togglePaused() {
 
-      this.unpauseOnArrow &&
+    if (this.paused) {
 
-      slideEvent.paused &&
+      this.carousel.cycle();
 
-      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)
+    } else {
 
-    ) {
+      this.carousel.pause();
 
-      this.togglePaused();
+    }
 
-    }
+    this.paused = !this.paused;
 
-    if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
+  }
 
-      this.togglePaused();
 
-    }
 
-  }
+
+  onSlide(slideEvent: NgbSlideEvent) {
+
+    if (
+
+      this.unpauseOnArrow &&
+
+      slideEvent.paused &&
+
+      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)
+
+    ) {
+
+      this.togglePaused();
+
+    }
+
+    if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
+
+      this.togglePaused();
+
+    }
+
+  }
 
 }
-
-
-
-
-
-
-
-
-

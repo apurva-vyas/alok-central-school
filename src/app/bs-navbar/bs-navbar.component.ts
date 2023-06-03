@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'bs-navbar',
@@ -7,5 +8,5 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent {
-
+  isMenuCollapsed = true;
 }
