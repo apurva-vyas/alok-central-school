@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.result{
+   position: relative;
+    width: 100%;
+    text-decoration: none;   
+    height: 100%;    
+    text-align: center;
+    background-image: url('../../assets/school5.jpg');
+    background-position: cover;
+    background-size: cover!important;
+ 
+}
+.pamphlet-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 20px;
+    padding-top: 200px;
+    padding-bottom: 20px;
+  }
+  
+  .pamphlet-image {
+    display: block;
+   padding: 50px;
+   width: 1000px;
+  
+  box-sizing: border-box; 
+  object-fit: cover;
+  border: 5px solid #78582F;
+  border-radius: 5px;
+  justify-content: center;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 30px; 
+  }
+  

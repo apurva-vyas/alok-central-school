@@ -1,0 +1,22 @@
+<section class="portfolio">
+
+    <div class="carousel-item active">
+        <img src="/assets/School.jpg" alt="..." class="center">
+    </div>
+
+<div class="gallery">
+    <div class="filter-buttons">
+      <button class="filter-button" (click)="filterImages('all')">All</button>
+      <button class="filter-button" (click)="filterImages('school trip')">School Trip</button>
+      <button class="filter-button" (click)="filterImages('Janmashthami')">Janmashthami</button>
+      <button class="filter-button" (click)="filterImages('News Clips')">News Clips</button>
+      <button class="filter-button" (click)="filterImages('science fair')">Science Fair</button>
+      <button class="filter-button" (click)="filterImages('Annual Function')">Annual Function</button>
+    </div>
+    <div class="image-container">
+      <div class="image-item" *ngFor="let image of filteredImages">
+        <img [src]="image.src" [alt]="image.alt">
+      </div>
+    </div>
+  </div>
+</section>

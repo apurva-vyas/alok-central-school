@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.portfolio{
+    width: 100%;
+    text-decoration: none;   
+}
+
+.portfolio .carousel-item img{
+    height: 500px;
+    width: 100%;
+    display: block;
+    background-size: cover!important;
+    background-position: center;
+    background-repeat: no-repeat;  
+    filter: blur(2px);
+}
+
+.gallery {
+    text-align: center;
+    padding: 200px;
+   
+ 
+  }
+  
+  .filter-buttons {
+    margin-bottom: 20px;
+  }
+  
+  .filter-buttons button {
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: #B8894A;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .filter-buttons button.active {
+    background-color: #362815;
+    color: #fff;
+  }
+  
+  .image-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+    margin: 30px;
+
+  }
+  
+  .filter-buttons button:focus,
+  .filter-buttons button:hover {
+  background-color: #362815;
+  color: #fff;
+}
+ 
+  
+  .image-item {
+    position: relative;
+    margin: 10px;
+  transition: transform 0.3s ease-in-out;
+  border: 5px solid #362815;
+  border-radius: 5px;
+  overflow: hidden;
+  }
+  
+  .image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .image-item:hover {
+    transform: scale(1.1);
+  }
+  

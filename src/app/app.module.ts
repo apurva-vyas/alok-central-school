@@ -15,6 +15,8 @@ import { ContactComponent } from './contact/contact.component';
 import { CommonModule } from '@angular/common';
 import {HttpClientModule , HttpErrorResponse} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GalleryComponent } from './gallery/gallery.component';
+import { ResultComponent } from './result/result.component';
 
 
 
@@ -30,7 +32,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ServicesComponent,
     HomeComponent,
     AdmissionsComponent,
-    ContactComponent
+    ContactComponent,
+    GalleryComponent,
+    ResultComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     HttpClientModule,
     NgbModule,
-    CarouselComponent
+    CarouselComponent  
  
  
   ],
