@@ -99,6 +99,10 @@ color:#78582F;
     display:initial;
 }
 
+.navbar-collapse ul li ul.show{
+    display:initial;
+}
+
 @media(max-width:991px){
     header{
         padding: 20px;
@@ -128,10 +132,10 @@ color:#78582F;
     }
 }
 
-.submenu {
+.navbar-collapse .submenu {
     display: none;
   }
   
-  .submenu.show {
+.navbar-collapse .submenu.show {
     display: block;
   }
