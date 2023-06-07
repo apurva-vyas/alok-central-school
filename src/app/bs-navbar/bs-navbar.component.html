@@ -20,9 +20,9 @@
             </ul>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" (click)="toggleSubmenu($event)">
             <a class="nav-link">ADMISSIONS</a>
-            <ul class="Dropdown" mdbDropdown>
+            <ul class="submenu" [ngClass]="{'show': isSubmenuOpen}">
               <li><a class="nav-menu" routerLink="admission">CBSE ADMISSIONS</a></li>
               <li><a class="nav-menu" routerLink="admission">RBSE ADMISSIONS</a></li>
             </ul>
