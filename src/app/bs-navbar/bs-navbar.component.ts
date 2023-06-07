@@ -9,4 +9,10 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class BsNavbarComponent {
   isMenuCollapsed = true;
+  isSubmenuOpen: boolean = false;
+
+  toggleSubmenu(event: Event) {
+    event.preventDefault();
+    this.isSubmenuOpen = !this.isSubmenuOpen;
+  }
 }

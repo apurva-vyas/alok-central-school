@@ -12,9 +12,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">HOME</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" (click)="toggleSubmenu($event)">
             <a class="nav-link" aria-current="page">ABOUT</a>
-            <ul>
+            <ul class="submenu" [ngClass]="{'show': isSubmenuOpen}">
               <li><a class="nav-menu" routerLink="about">SCHOOL INFO</a></li>
               <li><a class="nav-menu" routerLink="result">10th BOARD RESULTS</a></li>              
             </ul>
