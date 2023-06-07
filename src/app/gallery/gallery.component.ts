@@ -41,7 +41,7 @@ export class GalleryComponent {
     { src: '/assets/sciencefair/12.jpg', alt: 'science fair', category: 'science fair' },
     { src: '/assets/sciencefair/13.jpg', alt: 'science fair', category: 'science fair' },
     { src: '/assets/sciencefair/14.jpg', alt: 'science fair', category: 'science fair' },
-    { src: 'assets/janmashtami/1.jpeg', alt: 'Janmashthami', category: 'Janmashthami' },
+    { src: '/assets/janmashtami/1.jpeg', alt: 'Janmashthami', category: 'Janmashthami' },
     { src: 'assets/janmashtami/2.jpeg', alt: 'Janmashthami', category: 'Janmashthami' },
     { src: 'assets/janmashtami/3.jpeg', alt: 'Janmashthami', category: 'Janmashthami' },
     { src: 'assets/janmashtami/4.jpeg', alt: 'Janmashthami', category: 'Janmashthami' },
