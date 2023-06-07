@@ -59,7 +59,7 @@ export class GalleryComponent {
     { src: '/assets/jan/16.jpg', alt: 'Janmashthami', category: 'Janmashthami' },
     { src: '/assets/jan/17.jpg', alt: 'Janmashthami', category: 'Janmashthami' },
     { src: '/assets/jan/18.jpg', alt: 'Janmashthami', category: 'Janmashthami' },
-    { src: '/assets/jan/1.jpg', alt: 'Annual Function', category: 'Annual Function' },
+    { src: '/assets/ann/1.jpg', alt: 'Annual Function', category: 'Annual Function' },
     { src: '/assets/anualday/2.jpg', alt: 'Annual Function', category: 'Annual Function' },
     { src: '/assets/anualday/3.jpg', alt: 'Annual Function', category: 'Annual Function' },
     { src: '/assets/anualday/4.jpg', alt: 'Annual Function', category: 'Annual Function' },
@@ -126,4 +126,6 @@ export class GalleryComponent {
       this.filteredImages = this.images.filter(image => image.category.includes(category));
     }
   }
+
+  
 }

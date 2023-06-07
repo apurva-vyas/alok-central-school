@@ -13,10 +13,11 @@
       <button class="filter-button" (click)="filterImages('science fair')">Science Fair</button>
       <button class="filter-button" (click)="filterImages('Annual Function')">Annual Function</button>
     </div>
-    <div class="image-container">
+    <div class="image-container" >
       <div class="image-item" *ngFor="let image of filteredImages">
         <img [src]="image.src" [alt]="image.alt">
       </div>
     </div>
+ 
   </div>
 </section>
