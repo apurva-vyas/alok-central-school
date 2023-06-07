@@ -5,7 +5,8 @@
 
 .portfolio{
     width: 100%;
-    text-decoration: none;   
+    text-decoration: none; 
+    display: block;  
 }
 
 .portfolio .carousel-item img{
