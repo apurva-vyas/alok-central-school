@@ -7,6 +7,7 @@ import { AdmissionsComponent } from './admissions/admissions.component';
 import { ContactComponent } from './contact/contact.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ResultComponent } from './result/result.component';
+import { CBSEComponent } from './cbse/cbse.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'admission', component:AdmissionsComponent },
   {path: 'contact', component:ContactComponent },
   {path: 'gallery', component:GalleryComponent },
-  {path: 'result', component:ResultComponent }
+  {path: 'result', component:ResultComponent },
+  {path: 'cbse', component:CBSEComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,11 @@
+<section class="cbse">
+  <img src="/assets/School.jpg" alt="..." style="height: 600px; width: 100%; filter: blur(4px);" class="center">
+</section>
+
+<div class="links">
+  <a *ngFor="let doc of documents"
+     [href]="'assets/pdfs/' + doc.file"
+     target="_blank">
+    {{ doc.name }}
+  </a>
+</div>

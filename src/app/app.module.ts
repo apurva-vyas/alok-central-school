@@ -17,6 +17,7 @@ import {HttpClientModule , HttpErrorResponse} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ResultComponent } from './result/result.component';
+import { CBSEComponent } from './cbse/cbse.component';
 
 
 
@@ -34,7 +35,8 @@ import { ResultComponent } from './result/result.component';
     AdmissionsComponent,
     ContactComponent,
     GalleryComponent,
-    ResultComponent
+    ResultComponent,
+    CBSEComponent
     
   ],
   imports: [

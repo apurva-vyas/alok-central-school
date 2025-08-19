@@ -12,6 +12,7 @@
     background-image: url('../../assets/school5.jpg');
     background-position: cover;
     background-size: cover!important;
+    backdrop-filter: blur(8px);
  
 }
 .pamphlet-container {
