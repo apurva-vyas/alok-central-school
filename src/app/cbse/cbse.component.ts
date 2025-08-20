@@ -13,7 +13,7 @@ export class CBSEComponent {
 
   documents = [
     { name: 'As per Board Requirements', file: 'AsPerBoardRequirements.pdf', src: 'assets/pdfs/AsPerBoardRequirements.pdf' },
-    { name: 'Affiliation Letter', file: 'AffilationLetter.pdf', src: 'assets/pdfs/AffilationLetter.pdf' },
+    { name: 'Affiliation Letter', file: 'AffilationLetter.pdf', src: 'https://alok-central-school.s3.ap-south-1.amazonaws.com/AffilationLetter.pdf' },
     { name: 'NOC', file: 'noc.pdf', src: 'assets/pdfs/noc.pdf' },
     { name: 'Building Safety', file: 'BuildingSafetyCrt.pdf', src: 'assets/pdfs/BuildingSafetyCrt.pdf' },
     { name: 'Self System Generated Certificate', file: 'SelfGenerateCertificate.pdf', src: 'assets/pdfs/SelfGenerateCertificate.pdf' },
