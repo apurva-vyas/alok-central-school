@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cbse',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
   
 })
 export class CBSEComponent {
+
+  constructor(private http: HttpClient) {}
 
   documents = [
     { name: 'As per Board Requirements', file: 'AsPerBoardRequirements.pdf', src: '/assets/pdfs/AsPerBoardRequirements.pdf' },
@@ -27,5 +30,30 @@ export class CBSEComponent {
     { name: 'Parents Teachers Association', file: 'PTA.pdf', src: '/assets/pdfs/PTA.pdf' },
     { name: 'Staff Details', file: 'StaffDetails.pdf', src: '/assets/pdfs/StaffDetails.pdf' },
     { name: 'Self Affidavit of School', file: 'SelfAffidavit.pdf', src: '/assets/pdfs/SelfAffidavit.pdf' }
-  ]; 
+  ];
+
+  openPdfInNewTab(pdfUrl: string, fileName: string): void {
+    this.http.get(pdfUrl, { responseType: 'blob' }).subscribe({
+      next: (response: Blob) => {
+        const blob = new Blob([response], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        
+        // Open in new tab
+        const newWindow = window.open(url, '_blank');
+        if (newWindow) {
+          newWindow.document.title = fileName;
+        }
+        
+        // Clean up the URL object after a delay to prevent memory leaks
+        setTimeout(() => {
+          window.URL.revokeObjectURL(url);
+        }, 1000);
+      },
+      error: (error) => {
+        console.error('Error loading PDF:', error);
+        // Fallback: open the PDF directly if blob creation fails
+        window.open(pdfUrl, '_blank');
+      }
+    });
+  }
 }
