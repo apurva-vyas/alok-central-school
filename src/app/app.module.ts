@@ -18,7 +18,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ResultComponent } from './result/result.component';
 import { CBSEComponent } from './cbse/cbse.component';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer'; 
 
 
 
@@ -47,8 +46,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     CommonModule,
     HttpClientModule,
     NgbModule,
-    CarouselComponent,
-    NgxExtendedPdfViewerModule
+    CarouselComponent  
  
  
   ],
