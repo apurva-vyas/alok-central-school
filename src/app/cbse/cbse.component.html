@@ -4,7 +4,8 @@
 
 <div class="links">
   <a *ngFor="let doc of documents"
-     (click)="openPdf(doc.file)"
+     [href]="doc.src"
+     target="_blank"
      style="cursor: pointer;">
     {{ doc.name }}
   </a>
