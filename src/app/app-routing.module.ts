@@ -17,7 +17,8 @@ const routes: Routes = [
   {path: 'contact', component:ContactComponent },
   {path: 'gallery', component:GalleryComponent },
   {path: 'result', component:ResultComponent },
-  {path: 'cbse', component:CBSEComponent }
+  {path: 'cbse', component:CBSEComponent },
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

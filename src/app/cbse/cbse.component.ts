@@ -28,4 +28,9 @@ export class CBSEComponent {
     { name: 'Staff Details', file: 'StaffDetails.pdf' },
     { name: 'Self Affidavit of School', file: 'SelfAffidavit.pdf' }
   ];
+
+  openPdf(filename: string): void {
+    const pdfUrl = `/assets/pdfs/${filename}`;
+    window.open(pdfUrl, '_blank');
+  }
 }
