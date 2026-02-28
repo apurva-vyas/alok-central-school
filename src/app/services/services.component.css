@@ -10,7 +10,7 @@
 
 .facilities-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   gap: var(--space-lg);
 }
 
@@ -19,7 +19,7 @@
 }
 
 .facility-img {
-  height: 200px;
+  height: clamp(150px, 18vw, 220px);
   overflow: hidden;
 }
 
@@ -45,16 +45,4 @@
   font-weight: 700;
   color: var(--clr-text);
   margin: 0;
-}
-
-@media (max-width: 992px) {
-  .facilities-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 768px) {
-  .facilities-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 480px) {
-  .facilities-grid { grid-template-columns: 1fr; }
 }

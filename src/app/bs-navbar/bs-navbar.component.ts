@@ -1,4 +1,6 @@
 import { Component, HostListener, Input } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'bs-navbar',
@@ -11,6 +13,14 @@ export class BsNavbarComponent {
   isAboutSubmenuOpen = false;
   isAdmissionsSubmenuOpen = false;
 
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.closeMenu();
+    });
+  }
+
   toggleAboutSubmenu(event: Event) {
     event.stopPropagation();
     this.isAboutSubmenuOpen = !this.isAboutSubmenuOpen;
@@ -21,6 +31,12 @@ export class BsNavbarComponent {
     event.stopPropagation();
     this.isAdmissionsSubmenuOpen = !this.isAdmissionsSubmenuOpen;
     this.isAboutSubmenuOpen = false;
+  }
+
+  closeMenu() {
+    this.isMenuCollapsed = true;
+    this.isAboutSubmenuOpen = false;
+    this.isAdmissionsSubmenuOpen = false;
   }
 
   @HostListener('document:click')

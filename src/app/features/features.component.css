@@ -6,7 +6,7 @@
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   gap: var(--space-lg);
 }
 
@@ -16,8 +16,8 @@
 }
 
 .feature-icon {
-  width: 64px;
-  height: 64px;
+  width: clamp(50px, 6vw, 64px);
+  height: clamp(50px, 6vw, 64px);
   margin: 0 auto var(--space-lg);
   display: flex;
   align-items: center;
@@ -123,8 +123,8 @@
 }
 
 .principal-image img {
-  width: 250px;
-  height: 300px;
+  width: clamp(140px, 18vw, 250px);
+  height: clamp(170px, 22vw, 300px);
   object-fit: cover;
   border-radius: var(--radius-md);
   border: 4px solid var(--clr-surface-alt);
@@ -139,7 +139,7 @@
 
 .infra-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   gap: var(--space-lg);
 }
 
@@ -148,7 +148,7 @@
 }
 
 .infra-img-wrap {
-  height: 200px;
+  height: clamp(150px, 18vw, 220px);
   overflow: hidden;
 }
 
@@ -181,12 +181,7 @@
   color: var(--clr-text-muted);
 }
 
-/* ========== Responsive ========== */
-
-@media (max-width: 992px) {
-  .features-grid { grid-template-columns: repeat(2, 1fr); }
-  .infra-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* ========== Responsive (layout shifts only) ========== */
 
 @media (max-width: 768px) {
   .principal-card {
@@ -195,27 +190,7 @@
     padding: var(--space-lg);
     gap: var(--space-lg);
   }
-  .principal-content h2 { font-size: var(--fs-xl); }
   .principal-content h2::after { margin: var(--space-sm) auto 0; }
-  .principal-content blockquote { border-left: none; padding-left: 0; font-size: var(--fs-base); }
+  .principal-content blockquote { border-left: none; padding-left: 0; }
   .principal-content p { text-align: center; }
-  .principal-image img {
-    width: 180px;
-    height: 220px;
-  }
-}
-
-@media (max-width: 576px) {
-  .features-grid { grid-template-columns: 1fr; }
-  .infra-grid { grid-template-columns: 1fr; }
-  .infra-img-wrap { height: 180px; }
-}
-
-@media (max-width: 480px) {
-  .principal-card { padding: var(--space-md); }
-  .principal-image img {
-    width: 150px;
-    height: 180px;
-  }
-  .feature-card { padding: var(--space-lg) var(--space-md); }
 }

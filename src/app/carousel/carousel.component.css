@@ -5,9 +5,7 @@
 
 .slide-wrapper {
   position: relative;
-  height: 85vh;
-  min-height: 500px;
-  max-height: 800px;
+  height: clamp(350px, 75vw, 800px);
   overflow: hidden;
 }
 
@@ -32,7 +30,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--space-2xl);
+  padding: var(--space-lg);
   z-index: 2;
   pointer-events: none;
 }
@@ -49,21 +47,21 @@
   color: #fff;
   margin-bottom: var(--space-md);
   text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-  max-width: 700px;
+  max-width: min(700px, 85%);
 }
 
 .slide-content p {
   font-size: var(--fs-md);
   color: rgba(255,255,255,0.9);
   margin-bottom: var(--space-xl);
-  max-width: 560px;
+  max-width: min(560px, 80%);
   line-height: var(--lh-relaxed);
 }
 
 ::ng-deep .hero-carousel .carousel-control-prev,
 ::ng-deep .hero-carousel .carousel-control-next {
   z-index: 5;
-  width: 60px;
+  width: clamp(40px, 5vw, 60px);
   opacity: 0.8;
 }
 
@@ -74,44 +72,4 @@
 
 ::ng-deep .hero-carousel .carousel-indicators {
   z-index: 5;
-}
-
-@media (max-width: 768px) {
-  .slide-wrapper {
-    height: 70vh;
-    min-height: 400px;
-  }
-  .slide-content {
-    padding: var(--space-lg);
-  }
-  .slide-content h1 {
-    font-size: var(--fs-2xl);
-  }
-  .slide-content p {
-    font-size: var(--fs-base);
-    max-width: 400px;
-  }
-}
-
-@media (max-width: 480px) {
-  .slide-wrapper {
-    height: 60vh;
-    min-height: 350px;
-  }
-  .slide-content {
-    padding: var(--space-md);
-  }
-  .slide-content h1 {
-    font-size: var(--fs-xl);
-    max-width: 280px;
-  }
-  .slide-content p {
-    font-size: var(--fs-sm);
-    max-width: 300px;
-    margin-bottom: var(--space-md);
-  }
-  ::ng-deep .hero-carousel .carousel-control-prev,
-  ::ng-deep .hero-carousel .carousel-control-next {
-    width: 40px;
-  }
 }

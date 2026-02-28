@@ -4,9 +4,9 @@
 
 .docs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(270px, 100%), 1fr));
   gap: var(--space-md);
-  max-width: 960px;
+  max-width: min(960px, 95%);
   margin: 0 auto;
 }
 
@@ -25,7 +25,8 @@
   color: var(--clr-primary) !important;
 }
 
-.doc-card svg {
+.doc-card svg,
+.doc-card app-icon {
   flex-shrink: 0;
   color: var(--clr-primary);
 }
@@ -34,23 +35,4 @@
   font-size: var(--fs-sm);
   font-weight: 500;
   line-height: var(--lh-snug);
-}
-
-@media (max-width: 640px) {
-  .docs-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .doc-card {
-    padding: var(--space-sm) var(--space-md);
-  }
-  .doc-card svg {
-    width: 22px;
-    height: 22px;
-  }
-  .doc-card span {
-    font-size: var(--fs-xs);
-  }
 }

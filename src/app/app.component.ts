@@ -8,7 +8,7 @@ import { SCHOOL_INFO } from './shared/school-info';
 })
 export class AppComponent {
   title = SCHOOL_INFO.name;
-  whatsappUrl = SCHOOL_INFO.whatsappUrl;
+  whatsappUrl = SCHOOL_INFO.whatsappChatUrl;
   isScrolled = false;
 
   @HostListener('window:scroll')

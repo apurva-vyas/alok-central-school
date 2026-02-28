@@ -20,14 +20,24 @@
         </div>
 
         <div class="footer-col">
-          <h4>Contact</h4>
+          <h4>Contact Us</h4>
           <ul class="contact-list">
-            <li>{{ school.address.line1 }}</li>
-            <li>{{ school.address.line2 }}</li>
-            <li>{{ school.address.line3 }}</li>
-            <li><a href="mailto:{{ school.email }}">{{ school.email }}</a></li>
-            <li><a href="tel:{{ school.phone }}">{{ school.phone }}</a></li>
-            <li><a [href]="school.whatsappUrl" target="_blank" rel="noopener noreferrer">{{ school.whatsapp }} <app-icon name="whatsapp" [size]="14"></app-icon></a></li>
+            <li class="contact-item">
+              <app-icon name="location" [size]="16"></app-icon>
+              <a [href]="school.address.mapUrl" target="_blank" rel="noopener noreferrer">{{ school.address.line1 }}, {{ school.address.line2 }}, {{ school.address.line3 }}</a>
+            </li>
+            <li class="contact-item">
+              <app-icon name="phone" [size]="16"></app-icon>
+              <a href="tel:{{ school.phone }}">{{ school.phone }}</a>
+            </li>
+            <li class="contact-item">
+              <app-icon name="phone" [size]="16"></app-icon>
+              <a [href]="school.mobileCallUrl">{{ school.mobile }}</a>
+            </li>
+            <li class="contact-item">
+              <app-icon name="email" [size]="16"></app-icon>
+              <a href="mailto:{{ school.email }}">{{ school.email }}</a>
+            </li>
           </ul>
         </div>
 

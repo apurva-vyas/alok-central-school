@@ -8,10 +8,10 @@
         <h3>Get in Touch</h3>
         <div class="info-item">
           <app-icon name="location" [size]="20"></app-icon>
-          <div>
+          <a [href]="school.address.mapUrl" target="_blank" rel="noopener noreferrer">
             <strong>{{ school.address.line1 }}</strong>
             <p>{{ school.address.line2 }}<br>{{ school.address.line3 }}</p>
-          </div>
+          </a>
         </div>
         <div class="info-item">
           <app-icon name="email" [size]="20"></app-icon>
@@ -23,7 +23,7 @@
           <app-icon name="phone" [size]="20"></app-icon>
           <div>
             <p><a href="tel:{{ school.phone }}">{{ school.phone }}</a></p>
-            <p><a [href]="school.whatsappUrl" target="_blank" rel="noopener noreferrer">{{ school.whatsapp }} <app-icon name="whatsapp" [size]="16"></app-icon></a></p>
+            <p><a [href]="school.mobileCallUrl">{{ school.mobile }} <app-icon name="phone" [size]="16"></app-icon></a></p>
           </div>
         </div>
       </div>

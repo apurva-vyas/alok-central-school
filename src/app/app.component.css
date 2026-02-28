@@ -5,11 +5,11 @@ main {
 
 .whatsapp-float {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: clamp(14px, 3vw, 24px);
+  right: clamp(14px, 3vw, 24px);
   z-index: 9999;
-  width: 56px;
-  height: 56px;
+  width: clamp(46px, 6vw, 56px);
+  height: clamp(46px, 6vw, 56px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,17 +24,4 @@ main {
   transform: scale(1.1);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
   color: #fff;
-}
-
-@media (max-width: 480px) {
-  .whatsapp-float {
-    bottom: 16px;
-    right: 16px;
-    width: 50px;
-    height: 50px;
-  }
-  .whatsapp-float svg {
-    width: 24px;
-    height: 24px;
-  }
 }
