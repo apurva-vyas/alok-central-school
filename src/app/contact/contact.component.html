@@ -1,21 +1,39 @@
-<div class="admissions">
-    
-  
-  <div class="form">
-  <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfWFZ6p8gEewxbco0WWsH2WJPuGYtirr61RIh4n7LQXBPmKbw/formResponse" method="post">
+<app-page-hero [image]="school.heroImage" title="Contact Us"></app-page-hero>
 
-    <div class="row">
-      <div class="address centered-element">
-      <p style="color: black; font-size: 30px;">Alok Central Sec School</p>
-            <p>Shahpura, Bhilwara </p>
-            <p>Rajasthan, 311404</p>
-            <p>           
-              alokcentralschool@gmail.com
-            </p>
-            <p> 01484-222244, 9413270929</p>  
+<section class="contact-section section-padding">
+  <div class="site-container">
+    <div class="contact-grid">
+
+      <div class="contact-info card-custom">
+        <h3>Get in Touch</h3>
+        <div class="info-item">
+          <app-icon name="location" [size]="20"></app-icon>
+          <div>
+            <strong>{{ school.address.line1 }}</strong>
+            <p>{{ school.address.line2 }}<br>{{ school.address.line3 }}</p>
           </div>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWFZ6p8gEewxbco0WWsH2WJPuGYtirr61RIh4n7LQXBPmKbw/viewform?embedded=true" width="640" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+        <div class="info-item">
+          <app-icon name="email" [size]="20"></app-icon>
+          <div>
+            <p><a href="mailto:{{ school.email }}">{{ school.email }}</a></p>
+          </div>
+        </div>
+        <div class="info-item">
+          <app-icon name="phone" [size]="20"></app-icon>
+          <div>
+            <p><a href="tel:{{ school.phone }}">{{ school.phone }}</a></p>
+            <p><a [href]="school.whatsappUrl" target="_blank" rel="noopener noreferrer">{{ school.whatsapp }} <app-icon name="whatsapp" [size]="16"></app-icon></a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form card-custom">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWFZ6p8gEewxbco0WWsH2WJPuGYtirr61RIh4n7LQXBPmKbw/viewform?embedded=true"
+                width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0"
+                title="Contact Form">Loading...</iframe>
+      </div>
+
     </div>
-  </form>
-</div>
-</div>
+  </div>
+</section>

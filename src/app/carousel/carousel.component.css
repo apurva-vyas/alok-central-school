@@ -1,4 +1,117 @@
-.carousel-caption{
-   margin-bottom: 30px;
+.hero-carousel {
+  position: relative;
+  width: 100%;
 }
 
+.slide-wrapper {
+  position: relative;
+  height: 85vh;
+  min-height: 500px;
+  max-height: 800px;
+  overflow: hidden;
+}
+
+.slide-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--clr-hero-overlay);
+  pointer-events: none;
+}
+
+.slide-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-2xl);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.slide-content a,
+.slide-content button {
+  pointer-events: auto;
+}
+
+.slide-content h1 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-4xl);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--space-md);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  max-width: 700px;
+}
+
+.slide-content p {
+  font-size: var(--fs-md);
+  color: rgba(255,255,255,0.9);
+  margin-bottom: var(--space-xl);
+  max-width: 560px;
+  line-height: var(--lh-relaxed);
+}
+
+::ng-deep .hero-carousel .carousel-control-prev,
+::ng-deep .hero-carousel .carousel-control-next {
+  z-index: 5;
+  width: 60px;
+  opacity: 0.8;
+}
+
+::ng-deep .hero-carousel .carousel-control-prev:hover,
+::ng-deep .hero-carousel .carousel-control-next:hover {
+  opacity: 1;
+}
+
+::ng-deep .hero-carousel .carousel-indicators {
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .slide-wrapper {
+    height: 70vh;
+    min-height: 400px;
+  }
+  .slide-content {
+    padding: var(--space-lg);
+  }
+  .slide-content h1 {
+    font-size: var(--fs-2xl);
+  }
+  .slide-content p {
+    font-size: var(--fs-base);
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-wrapper {
+    height: 60vh;
+    min-height: 350px;
+  }
+  .slide-content {
+    padding: var(--space-md);
+  }
+  .slide-content h1 {
+    font-size: var(--fs-xl);
+    max-width: 280px;
+  }
+  .slide-content p {
+    font-size: var(--fs-sm);
+    max-width: 300px;
+    margin-bottom: var(--space-md);
+  }
+  ::ng-deep .hero-carousel .carousel-control-prev,
+  ::ng-deep .hero-carousel .carousel-control-next {
+    width: 40px;
+  }
+}

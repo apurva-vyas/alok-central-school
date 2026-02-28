@@ -8,17 +8,19 @@ import { ContactComponent } from './contact/contact.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ResultComponent } from './result/result.component';
 import { CBSEComponent } from './cbse/cbse.component';
+import { VideoGalleryComponent } from './video-gallery/video-gallery.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path: 'about', component:AboutPageComponent},
-  {path: 'services', component:ServicesComponent },
-  {path: 'admission', component:AdmissionsComponent },
-  {path: 'contact', component:ContactComponent },
-  {path: 'gallery', component:GalleryComponent },
-  {path: 'result', component:ResultComponent },
-  {path: 'cbse', component:CBSEComponent },
-  {path: '**', redirectTo: ''}
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutPageComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'admission', component: AdmissionsComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'gallery', component: GalleryComponent },
+  { path: 'videos', component: VideoGalleryComponent },
+  { path: 'result', component: ResultComponent },
+  { path: 'cbse', component: CBSEComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

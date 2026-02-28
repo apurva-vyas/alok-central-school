@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { CBSE } from './cbse.component';
+import { CBSEComponent } from './cbse.component';
 
-describe('CBSE', () => {
-  let component: CBSE;
-  let fixture: ComponentFixture<CBSE>;
+describe('CBSEComponent', () => {
+  let component: CBSEComponent;
+  let fixture: ComponentFixture<CBSEComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CBSE]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(CBSE);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [CBSEComponent],
+      imports: [HttpClientTestingModule]
+    });
+    fixture = TestBed.createComponent(CBSEComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

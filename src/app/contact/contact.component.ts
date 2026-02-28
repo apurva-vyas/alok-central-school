@@ -1,24 +1,11 @@
-import { Component, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
+import { Component } from '@angular/core';
+import { SCHOOL_INFO } from '../shared/school-info';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
-
-@Injectable()
 export class ContactComponent {
-  constructor(private http: HttpClient) { }
- 
-  number!: string;
-  email!: string;
-  message!: string;
-  headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  name!:string;
-  submit(): void{
-   
-  }
+  school = SCHOOL_INFO;
 }

@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { Component, HostListener, Input } from '@angular/core';
 
 @Component({
   selector: 'bs-navbar',
@@ -8,11 +6,26 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent {
+  @Input() isScrolled = false;
   isMenuCollapsed = true;
-  isSubmenuOpen: boolean = false;
+  isAboutSubmenuOpen = false;
+  isAdmissionsSubmenuOpen = false;
 
-  toggleSubmenu(event: Event) {
-    event.preventDefault();
-    this.isSubmenuOpen = !this.isSubmenuOpen;
+  toggleAboutSubmenu(event: Event) {
+    event.stopPropagation();
+    this.isAboutSubmenuOpen = !this.isAboutSubmenuOpen;
+    this.isAdmissionsSubmenuOpen = false;
+  }
+
+  toggleAdmissionsSubmenu(event: Event) {
+    event.stopPropagation();
+    this.isAdmissionsSubmenuOpen = !this.isAdmissionsSubmenuOpen;
+    this.isAboutSubmenuOpen = false;
+  }
+
+  @HostListener('document:click')
+  closeAllSubmenus() {
+    this.isAboutSubmenuOpen = false;
+    this.isAdmissionsSubmenuOpen = false;
   }
 }

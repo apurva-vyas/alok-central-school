@@ -1,7 +1,12 @@
-<section class="result">
+<app-page-hero title="10th Board Results"></app-page-hero>
 
-<div class="pamphlet-container">
-    <img src="assets/result1.jpg" alt="Pamphlet 1" class="pamphlet-image">
-    <img src="assets/result2.jpg" alt="Pamphlet 2" class="pamphlet-image">
+<section class="result-section section-padding">
+  <div class="site-container">
+    <p class="section-subtitle">Our students consistently achieve excellent results. View the board examination results below.</p>
+    <div class="result-gallery">
+      <div class="result-item card-custom" *ngFor="let img of images">
+        <img [src]="img" alt="Board Result" loading="lazy">
+      </div>
+    </div>
   </div>
 </section>

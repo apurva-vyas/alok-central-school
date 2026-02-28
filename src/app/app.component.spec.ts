@@ -14,16 +14,15 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'hello'`, () => {
+  it(`should have as title 'Alok Central School'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('hello');
+    expect(app.title).toEqual('Alok Central School');
   });
 
-  it('should render title', () => {
+  it('should default to heritage theme', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('hello app is running!');
+    const app = fixture.componentInstance;
+    expect(app.currentTheme).toEqual('heritage');
   });
 });

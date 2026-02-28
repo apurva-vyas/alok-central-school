@@ -1,20 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-admissions',
   templateUrl: './admissions.component.html',
   styleUrls: ['./admissions.component.css']
 })
-export class AdmissionsComponent implements OnInit{
-  ngOnInit(): void {
-    
-  }
- name!:string;
- number!:string;
- email!:string;
- 
-  submit(){
-    
-  }
-
-}
+export class AdmissionsComponent { }

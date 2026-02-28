@@ -1,77 +1,43 @@
-<ngb-carousel #carousel [interval]="3000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+<div class="hero-carousel">
+  <ngb-carousel #carousel [interval]="4000" [pauseOnHover]="pauseOnHover"
+                [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)"
+                [showNavigationIndicators]="true" [showNavigationArrows]="true">
 
     <ng-template ngbSlide>
-
-        <div class="picsum-img-wrapper">
-       
-         <img [src]="images[0]" alt="Random first slide" />
-
-            </div>
-
-        <div class="carousel-caption">
-            <h2>
-                Welcome to Alok Central Secondary School</h2>
-            <p>
-                The Alok Institution campuses stays abreast of latest developments in technologies and
-                learning
-                systems so as to give our students highest knowledge skills and attributes they need to
-                succeed
-                in their foundation of education. We strive to develop students who are prepared for the
-                future,
-                ready for changing needs of the education environment, and trained for a life of ongoing
-                learning and academic success.
-            </p>
-        
+      <div class="slide-wrapper">
+        <img [src]="images[0]" alt="Alok Central School Campus" />
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h1>Welcome to Alok Central School</h1>
+          <p>Empowering students with knowledge, skills, and values for a brighter future.</p>
+          <a routerLink="about" class="btn-primary-custom">Discover More</a>
         </div>
-
-        </ng-template>
+      </div>
+    </ng-template>
 
     <ng-template ngbSlide>
+      <div class="slide-wrapper">
+        <img [src]="images[1]" alt="School Building" />
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h1>Excellence in Education</h1>
+          <p>Nurturing critical thinkers and lifelong learners since 2002.</p>
+          <a routerLink="services" class="btn-primary-custom">Our Facilities</a>
+        </div>
+      </div>
+    </ng-template>
 
-        <div class="picsum-img-wrapper">
+    <ng-template ngbSlide>
+      <div class="slide-wrapper">
+        <img [src]="images[2]" alt="Students at School" />
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h1>RBSE &amp; CBSE Board</h1>
+          <p>Comprehensive curriculum preparing students for board exams and beyond.</p>
+          <a routerLink="admission" class="btn-primary-custom">Apply Now</a>
+        </div>
+      </div>
+    </ng-template>
 
-            <img [src]="images[1]" alt="Random first slide" />
-
-            </div>
-
-        <div class="carousel-caption">
-
-            <h2>
-                Self Perform Expertise</h2>
-            <p>
-                The Alok Institution campuses stays abreast of latest developments in technologies and
-                learning systems so as to give our students highest knowledge skills and attributes they need to
-                succeed in their foundation of education. We strive to develop students who are prepared for the
-                future, ready for changing needs of the education environment, and trained for a life of ongoing
-                learning and academic success.
-            </p>
-           
-            </div>
-
-        </ng-template>
-
-        <ng-template ngbSlide>
-
-            <div class="picsum-img-wrapper">
-    
-                <img [src]="images[2]" alt="Random first slide" />
-    
-                </div>
-    
-            <div class="carousel-caption">
-    
-                <h2>
-                    RBSE & CBSE BOARD</h2>
-                <p>
-                    The Alok Institution campuses stays abreast of latest developments in technologies and
-                    learning systems so as to give our students highest knowledge skills and attributes they need to
-                    succeed in their foundation of education. We strive to develop students who are prepared for the
-                    future, ready for changing needs of the education environment, and trained for a life of ongoing
-                    learning and academic success.
-                </p>
-               
-                </div>
-    
-            </ng-template>
-
-</ngb-carousel>
+  </ngb-carousel>
+</div>

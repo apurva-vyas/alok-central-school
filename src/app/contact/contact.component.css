@@ -1,55 +1,96 @@
-*{
-    margin: 0;
-    padding: 0;
-   font-family: 'poppins', sans-serif;
-   
- 
+.contact-section {
+  background: var(--clr-bg);
 }
 
-.admissions{
-    width: 100%;
-    text-decoration: none;   
-    height: 100%; 
-   display: inline-block;
-   
-    background-image: url('../../assets/school5.jpg');
-    background-position: cover;
-    background-size: cover!important;
-    justify-content: center;
-    text-align: center;
-    padding: 60px;    
-    padding-left: 120px;
-   
-   
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-xl);
+  align-items: start;
 }
 
-form{
-    width: 90%;
-  
-    margin-top: 170px;
-  
+.contact-info {
+  padding: var(--space-2xl);
 }
 
-
-.row{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.row input-group{
-    flex-basis: 48%;
-}
-
-.address{
-    width: 53%;
-   margin-left: 23%;
+.contact-info h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  color: var(--clr-primary);
+  margin-bottom: var(--space-xl);
   position: relative;
-   background-color: #fff;
- 
-    color: gray;
-    height: fit-content;
-    border: 5px solid #78582F;
-    border-radius: 5px;
-    padding: 10px;
+}
+
+.contact-info h3::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--clr-secondary);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-sm);
+}
+
+.info-item {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  align-items: flex-start;
+}
+
+.info-item svg {
+  flex-shrink: 0;
+  color: var(--clr-primary);
+  margin-top: 2px;
+}
+
+.info-item strong {
+  display: block;
+  font-size: var(--fs-md);
+  color: var(--clr-text);
+  margin-bottom: var(--space-xs);
+}
+
+.info-item p {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-normal);
+  margin: 0;
+}
+
+.contact-form {
+  padding: var(--space-lg);
+  overflow: hidden;
+}
+
+.contact-form iframe {
+  border: none;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-info {
+    padding: var(--space-lg);
+  }
+  .contact-form {
+    padding: var(--space-md);
+  }
+  .contact-form iframe {
+    height: 900px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-info {
+    padding: var(--space-md);
+  }
+  .contact-form {
+    padding: var(--space-sm);
+  }
+  .contact-form iframe {
+    height: 800px;
+  }
 }

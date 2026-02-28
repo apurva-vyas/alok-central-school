@@ -1,0 +1,95 @@
+<app-page-hero title="Video Gallery"></app-page-hero>
+
+<section class="video-section section-padding">
+  <div class="site-container">
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading videos from YouTube...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="error-state card-custom">
+      <p>{{ error }}</p>
+      <a [href]="channelUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-custom">
+        <app-icon name="youtube" [size]="18"></app-icon>
+        Visit YouTube Channel
+      </a>
+    </div>
+
+    <!-- Content (only when loaded successfully) -->
+    <ng-container *ngIf="!loading && !error && videos.length > 0">
+
+      <!-- Featured Player -->
+      <div class="video-player-wrap card-custom" *ngIf="activeVideo">
+        <div class="video-player">
+          <iframe [src]="activeUrl" allowfullscreen
+                  title="Video Player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          </iframe>
+        </div>
+        <div class="video-player-info">
+          <h2>{{ activeVideo.title }}</h2>
+          <span class="video-date">{{ activeVideo.date }}</span>
+        </div>
+      </div>
+
+      <!-- Channel Link -->
+      <div class="channel-link">
+        <a [href]="channelUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-custom">
+          <app-icon name="youtube" [size]="18"></app-icon>
+          View All Videos on YouTube
+        </a>
+      </div>
+
+      <!-- Video Grid -->
+      <h3 class="section-title">All Videos ({{ videos.length }})</h3>
+      <p class="section-subtitle">Latest uploads shown first. Click any video to play it above.</p>
+
+      <div class="video-grid">
+        <div *ngFor="let video of paginatedVideos"
+             class="video-card card-custom"
+             [class.active]="activeVideo && video.id === activeVideo.id"
+             (click)="playVideo(video)">
+          <div class="video-thumb">
+            <img [src]="video.thumbnail" [alt]="video.title" loading="lazy">
+            <div class="play-overlay">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="video-card-info">
+            <h4>{{ video.title }}</h4>
+            <span>{{ video.date }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" *ngIf="totalPages > 1">
+        <button class="page-btn" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+          &laquo; Prev
+        </button>
+        <button *ngFor="let p of pages" class="page-btn" [class.active]="p === currentPage"
+                (click)="goToPage(p)">{{ p }}</button>
+        <button class="page-btn" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+          Next &raquo;
+        </button>
+      </div>
+
+    </ng-container>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && !error && videos.length === 0" class="empty-state">
+      <p>No videos found on this channel yet.</p>
+      <a [href]="channelUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-custom">
+        <app-icon name="youtube" [size]="18"></app-icon>
+        Visit YouTube Channel
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,122 @@
+.site-footer {
+  background: var(--clr-footer);
+  color: var(--clr-text-on-dark);
+  margin-top: 0;
+}
+
+.footer-main {
+  padding: var(--space-3xl) 0 var(--space-2xl);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: var(--space-2xl);
+}
+
+.footer-logo {
+  height: 80px;
+  width: auto;
+  margin-bottom: var(--space-md);
+}
+
+.footer-brand p {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-on-dark);
+  opacity: 0.75;
+  line-height: var(--lh-relaxed);
+}
+
+.footer-col h4 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.footer-col h4::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: var(--clr-secondary);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-sm);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: var(--space-sm);
+}
+
+.footer-col ul li a {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-on-dark);
+  opacity: 0.75;
+  transition: all var(--transition-fast);
+}
+
+.footer-col ul li a:hover {
+  opacity: 1;
+  color: var(--clr-secondary);
+  padding-left: var(--space-xs);
+}
+
+.contact-list li {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-on-dark);
+  opacity: 0.75;
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: var(--clr-text-on-dark);
+  transition: all var(--transition-fast);
+}
+
+.social-icon:hover {
+  background: var(--clr-secondary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: var(--space-md) 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: var(--fs-xs);
+  color: var(--clr-text-on-dark);
+  opacity: 0.5;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .footer-col h4::after { margin: var(--space-sm) auto 0; }
+  .social-links { justify-content: center; }
+}

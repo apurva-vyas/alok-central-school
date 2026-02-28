@@ -1,11 +1,14 @@
-<section class="cbse">
-  <img src="assets/School.jpg" alt="..." style="height: 600px; width: 100%; filter: blur(6px);" class="center">
-</section>
+<app-page-hero image="/assets/School.jpg" title="CBSE Information"></app-page-hero>
 
-<div class="links">
-  <a *ngFor="let doc of documents"
-     (click)="openPdfInNewTab(doc.src, doc.name)"
-     style="cursor: pointer;">
-    {{ doc.name }}
-  </a>
-</div>
+<section class="cbse-section section-padding">
+  <div class="site-container">
+    <p class="section-subtitle">Access all mandatory CBSE disclosure documents below. Click any document to view it.</p>
+    <div class="docs-grid">
+      <a *ngFor="let doc of documents" class="doc-card card-custom"
+         (click)="openPdfInNewTab(doc.src, doc.name)" role="button" tabindex="0">
+        <app-icon name="pdf" [size]="28"></app-icon>
+        <span>{{ doc.name }}</span>
+      </a>
+    </div>
+  </div>
+</section>

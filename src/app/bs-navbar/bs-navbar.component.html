@@ -1,48 +1,58 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-static-top">
+<header [class.scrolled]="isScrolled" [class.nav-open]="!isMenuCollapsed">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand"><img height="120" ronded src="/assets/school_logo.png" thumbnail width="120"></a>
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
-        (click)="isMenuCollapsed = !isMenuCollapsed">
-        <span class="navbar-toggler-icon my-toggle"></span>
+      <a class="navbar-brand" routerLink="">
+        <img src="/assets/school_logo.png" alt="Alok Central School" class="brand-logo">
+      </a>
+      <button class="navbar-toggler" type="button"
+              (click)="isMenuCollapsed = !isMenuCollapsed"
+              [attr.aria-expanded]="!isMenuCollapsed"
+              aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
       </button>
+
       <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">HOME</a>
+            <a class="nav-link" routerLink="" routerLinkActive="active-link"
+               [routerLinkActiveOptions]="{exact: true}">Home</a>
           </li>
-          <li class="nav-item" (click)="toggleSubmenu($event)">
-            <a class="nav-link" aria-current="page">ABOUT</a>
-            <ul class="submenu" [ngClass]="{'show': isSubmenuOpen}">
-              <li><a class="nav-menu" routerLink="about">SCHOOL INFO</a></li>
-              <li><a class="nav-menu" routerLink="result">10th BOARD RESULTS</a></li>              
+
+          <li class="nav-item has-dropdown" (click)="toggleAboutSubmenu($event)">
+            <a class="nav-link dropdown-toggle-custom">About</a>
+            <ul class="dropdown-menu-custom" [class.open]="isAboutSubmenuOpen">
+              <li><a routerLink="about">School Info</a></li>
+              <li><a routerLink="result">10th Board Results</a></li>
             </ul>
           </li>
 
-          <li class="nav-item" (click)="toggleSubmenu($event)">
-            <a class="nav-link">ADMISSIONS</a>
-            <ul class="submenu" [ngClass]="{'show': isSubmenuOpen}">
-              <li><a class="nav-menu" routerLink="admission">CBSE ADMISSIONS</a></li>
-              <li><a class="nav-menu" routerLink="admission">RBSE ADMISSIONS</a></li>
+          <li class="nav-item has-dropdown" (click)="toggleAdmissionsSubmenu($event)">
+            <a class="nav-link dropdown-toggle-custom">Admissions</a>
+            <ul class="dropdown-menu-custom" [class.open]="isAdmissionsSubmenuOpen">
+              <li><a routerLink="admission">CBSE Admissions</a></li>
+              <li><a routerLink="admission">RBSE Admissions</a></li>
             </ul>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" routerLink="services">FACILITIES</a>
+            <a class="nav-link" routerLink="services" routerLinkActive="active-link">Facilities</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink='gallery'>GALLERY</a>
+            <a class="nav-link" routerLink="gallery" routerLinkActive="active-link">Gallery</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink='contact'>CONTACT US</a>
+            <a class="nav-link" routerLink="videos" routerLinkActive="active-link">Videos</a>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" routerLink='cbse'>CBSE</a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="cbse" routerLinkActive="active-link">CBSE</a>
           </li>
         </ul>
-
       </div>
     </div>
   </nav>
-
 </header>
