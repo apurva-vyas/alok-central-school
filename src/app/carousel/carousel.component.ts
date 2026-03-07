@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { IMAGES } from '../shared/image-registry';
 
 @Component({
   selector: 'app-carousel',
@@ -14,7 +15,7 @@ import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } fr
 export class CarouselComponent {
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
 
-  images = ['/assets/school6.jpg', '/assets/School7.jpg', '/assets/School8.jpg'];
+  images = [...IMAGES.carousel];
 
   paused = false;
   unpauseOnArrow = true;

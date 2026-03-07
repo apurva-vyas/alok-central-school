@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IMAGES } from '../shared/image-registry';
 
 @Component({
   selector: 'app-services',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent {
-
+  img = IMAGES;
 }

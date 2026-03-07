@@ -1,3 +1,5 @@
+import { IMAGES } from './image-registry';
+
 export const SCHOOL_INFO = {
   name: 'Alok Central School',
   shortName: 'ACS',
@@ -18,6 +20,8 @@ export const SCHOOL_INFO = {
     youtube: 'https://www.youtube.com/@alokcentralschool7866/featured',
     facebook: 'https://www.facebook.com/people/Alok-Central-School-Shahpura/pfbid02ZKfGSouwGLkP4SiD8hwEFjQjPHf8EqZnjn5tWiqbJbU3LCoefax3cEMss2oPpSaWl/',
   },
-  heroImage: '/assets/School7.jpg',
-  logo: '/assets/school_logo.png',
+  contactFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfT9AahxDVQiMq9K4kcyCzuIVmGiMnMcmJG16w9EG3-HDdnrg/viewform?embedded=true',
+  admissionFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScKlZIDW5d0Zw0AL7UnKSS61yf0MVTe-FoSnlouay1QCJEcMw/viewform?embedded=true',
+  heroImage: IMAGES.campus.hero,
+  logo: IMAGES.branding.logo,
 } as const;
