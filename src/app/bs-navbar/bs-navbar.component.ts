@@ -2,6 +2,7 @@ import { Component, HostListener, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { IMAGES } from '../shared/image-registry';
+import { SCHOOL_INFO } from '../shared/school-info';
 
 @Component({
   selector: 'bs-navbar',
@@ -13,6 +14,7 @@ export class BsNavbarComponent {
   isMenuCollapsed = true;
   isAboutSubmenuOpen = false;
   logo = IMAGES.branding.logo;
+  school = SCHOOL_INFO;
   constructor(private router: Router) {
     this.router.events.pipe(
       filter(e => e instanceof NavigationEnd)

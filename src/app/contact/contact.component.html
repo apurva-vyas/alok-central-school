@@ -4,27 +4,35 @@
   <div class="site-container">
     <div class="contact-grid">
 
-      <div class="contact-info card-custom">
-        <h3>Get in Touch</h3>
-        <div class="info-item">
-          <app-icon name="location" [size]="20"></app-icon>
-          <a [href]="school.address.mapUrl" target="_blank" rel="noopener noreferrer">
-            <strong>{{ school.address.line1 }}</strong>
-            <p>{{ school.address.line2 }}<br>{{ school.address.line3 }}</p>
-          </a>
-        </div>
-        <div class="info-item">
-          <app-icon name="email" [size]="20"></app-icon>
-          <div>
-            <p><a href="mailto:{{ school.email }}">{{ school.email }}</a></p>
+      <div class="contact-left">
+        <div class="contact-info card-custom">
+          <h3>Get in Touch</h3>
+          <div class="info-item">
+            <app-icon name="location" [size]="20"></app-icon>
+            <a [href]="school.address.mapUrl" target="_blank" rel="noopener noreferrer">
+              <strong>{{ school.address.line1 }}</strong>
+              <p>{{ school.address.line2 }}<br>{{ school.address.line3 }}</p>
+            </a>
+          </div>
+          <div class="info-item">
+            <app-icon name="email" [size]="20"></app-icon>
+            <div>
+              <p><a href="mailto:{{ school.email }}">{{ school.email }}</a></p>
+            </div>
+          </div>
+          <div class="info-item">
+            <app-icon name="phone" [size]="20"></app-icon>
+            <div>
+              <p><a href="tel:{{ school.phone }}">{{ school.phone }}</a></p>
+              <p><a [href]="school.mobileCallUrl">{{ school.mobile }}</a></p>
+            </div>
           </div>
         </div>
-        <div class="info-item">
-          <app-icon name="phone" [size]="20"></app-icon>
-          <div>
-            <p><a href="tel:{{ school.phone }}">{{ school.phone }}</a></p>
-            <p><a [href]="school.mobileCallUrl">{{ school.mobile }} <app-icon name="phone" [size]="16"></app-icon></a></p>
-          </div>
+
+        <div class="contact-map card-custom">
+          <iframe src="https://maps.google.com/maps?q=Alok+Central+School+Shahpura+Bhilwara+Rajasthan&output=embed"
+                  width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                  title="Alok Central School Location"></iframe>
         </div>
       </div>
 

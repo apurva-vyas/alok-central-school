@@ -59,6 +59,23 @@
   margin: 0;
 }
 
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.contact-map {
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.contact-map iframe {
+  display: block;
+  border-radius: var(--radius-md);
+}
+
 .contact-form {
   padding: var(--space-lg);
   overflow: hidden;

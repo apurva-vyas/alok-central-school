@@ -1,3 +1,78 @@
+/* ========== Top Info Bar ========== */
+
+.top-info-bar {
+  background: var(--clr-primary, #4a1942);
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  max-height: 40px;
+}
+
+.top-info-bar.hidden {
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.top-info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-info-left,
+.top-info-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.top-info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+a.top-info-item:hover {
+  color: #fff;
+}
+
+.top-info-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 4px;
+}
+
+.top-info-socials a {
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.top-info-socials a:hover {
+  color: #fff;
+  transform: scale(1.15);
+}
+
+@media (max-width: 768px) {
+  .top-info-bar {
+    font-size: 11px;
+    padding: 5px 0;
+  }
+
+  .top-info-right {
+    display: none;
+  }
+}
+
 /* ========== Navbar ========== */
 
 header {
