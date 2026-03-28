@@ -13,7 +13,7 @@ export const SCHOOL_INFO = {
     line1: 'Alok Central School',
     line2: 'Shahpura, Bhilwara',
     line3: 'Rajasthan, 311404',
-    mapUrl: 'https://maps.app.goo.gl/jGXs9JDRXi5oL56p7',
+    mapUrl: 'https://maps.app.goo.gl/qKvotw9g1PG4oqjB9',
   },
   social: {
     instagram: 'https://www.instagram.com/alok_central_school_shahpura/',

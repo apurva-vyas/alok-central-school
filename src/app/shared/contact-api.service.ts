@@ -26,7 +26,7 @@ export class ContactApiService {
 
   constructor(private http: HttpClient) {}
 
-  submit(data: { name: string; email: string; mobile?: string; message: string }): Observable<{ success: boolean; id: string }> {
+  submit(data: { name: string; email?: string; mobile: string; message: string }): Observable<{ success: boolean; id: string }> {
     return this.http.post<{ success: boolean; id: string }>(`${this.api}/contact`, data);
   }
 

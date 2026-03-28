@@ -2,6 +2,7 @@
 
 .features-section {
   background: var(--clr-bg);
+  padding-top: var(--space-3xl) !important;
 }
 
 .features-grid {

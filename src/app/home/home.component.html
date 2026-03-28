@@ -1,2 +1,29 @@
 <app-carousel></app-carousel>
+
+<!-- Quick Stats -->
+<section class="stats-section">
+  <div class="site-container">
+    <div class="stats-grid">
+      <div class="stat-item" *ngFor="let s of stats">
+        <span class="stat-value">{{ s.number }}<span class="stat-suffix">{{ s.suffix }}</span></span>
+        <span class="stat-label">{{ s.label }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <features></features>
+
+<!-- Call to Action -->
+<section class="cta-section">
+  <div class="site-container">
+    <div class="cta-content">
+      <h2>Ready to Join Our Family?</h2>
+      <p>Give your child the best start with quality education, modern facilities, and a nurturing environment.</p>
+      <div class="cta-buttons">
+        <a routerLink="admission" class="cta-btn cta-btn--primary">Apply for Admission</a>
+        <a routerLink="contact" class="cta-btn cta-btn--secondary">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>

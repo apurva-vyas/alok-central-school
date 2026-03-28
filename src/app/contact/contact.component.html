@@ -29,7 +29,7 @@
         </div>
 
         <div class="contact-map card-custom">
-          <iframe src="https://maps.google.com/maps?q=Alok+Central+School+Shahpura+Bhilwara+Rajasthan&output=embed"
+          <iframe src="https://maps.google.com/maps?q=Alok+Central+School+Kalyanpura+Shahpura+Bhilwara+Rajasthan+311404&t=&z=16&ie=UTF8&iwloc=&output=embed"
                   width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
                   title="Alok Central School Location"></iframe>
         </div>
@@ -60,13 +60,18 @@
           </div>
 
           <div class="form-field">
-            <label for="cf-email">Email <span class="req">*</span></label>
-            <input id="cf-email" type="email" [(ngModel)]="form.email" name="email" placeholder="your@email.com" [disabled]="submitting" />
+            <label for="cf-mobile">Mobile Number <span class="req">*</span></label>
+            <div class="mobile-input-group">
+              <select [(ngModel)]="selectedCountryCode" name="countryCode" class="country-code-select" [disabled]="submitting">
+                <option *ngFor="let c of countryCodes" [value]="c.code">{{ c.flag }} {{ c.code }}</option>
+              </select>
+              <input id="cf-mobile" type="tel" [(ngModel)]="form.mobile" name="mobile" placeholder="98765 43210" [disabled]="submitting" class="mobile-number-input" />
+            </div>
           </div>
 
           <div class="form-field">
-            <label for="cf-mobile">Mobile Number</label>
-            <input id="cf-mobile" type="tel" [(ngModel)]="form.mobile" name="mobile" placeholder="+91 98765 43210" [disabled]="submitting" />
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" [(ngModel)]="form.email" name="email" placeholder="your@email.com (optional)" [disabled]="submitting" />
           </div>
 
           <div class="form-field">

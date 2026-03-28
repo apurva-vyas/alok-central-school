@@ -146,6 +146,60 @@
   box-shadow: 0 0 0 3px rgba(var(--clr-primary-rgb), 0.15);
 }
 
+.mobile-input-group {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.mobile-input-group:focus-within {
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 3px rgba(var(--clr-primary-rgb), 0.15);
+}
+
+.country-code-select {
+  width: auto;
+  min-width: 100px;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-sm);
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--clr-text);
+  background: var(--clr-surface-alt);
+  border: none;
+  border-right: 1px solid var(--clr-border);
+  box-sizing: border-box;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236B5344'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.country-code-select:focus {
+  outline: none;
+}
+
+.mobile-number-input {
+  flex: 1;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: var(--space-md) !important;
+  font-size: var(--fs-base);
+  background: var(--clr-bg);
+}
+
+.mobile-number-input:focus {
+  box-shadow: none !important;
+  outline: none;
+}
+
 .form-field textarea {
   resize: vertical;
   min-height: 120px;

@@ -26,10 +26,14 @@ export class AdminComponent implements OnInit {
   gallerySearch = '';
   galleryCategory = 'all';
   galleryVisibility: 'all' | 'active' | 'hidden' = 'all';
+  galleryPage = 1;
+  readonly galleryPageSize = 12;
 
   facultyList: FacultyMemberDTO[] = [];
   facultySearch = '';
   facultyDesignation = 'all';
+  facultyPage = 1;
+  readonly facultyPageSize = 12;
 
   resultsList: StudentResultDTO[] = [];
   resultsYear: number | null = null;
@@ -262,7 +266,7 @@ export class AdminComponent implements OnInit {
     void this.router.navigate(['/']);
   }
 
-  get filteredGalleryImages(): GalleryImageDTO[] {
+  get allFilteredGalleryImages(): GalleryImageDTO[] {
     let list = [...this.galleryImages];
     const q = this.gallerySearch.trim().toLowerCase();
     if (q) {
@@ -283,6 +287,39 @@ export class AdminComponent implements OnInit {
     return list;
   }
 
+  get filteredGalleryImages(): GalleryImageDTO[] {
+    const all = this.allFilteredGalleryImages;
+    const start = (this.galleryPage - 1) * this.galleryPageSize;
+    return all.slice(start, start + this.galleryPageSize);
+  }
+
+  get galleryTotalPages(): number {
+    return Math.ceil(this.allFilteredGalleryImages.length / this.galleryPageSize);
+  }
+
+  get galleryTotal(): number {
+    return this.allFilteredGalleryImages.length;
+  }
+
+  get visibleGalleryPages(): number[] {
+    const t = this.galleryTotalPages;
+    if (t <= 7) return Array.from({ length: t }, (_, i) => i + 1);
+    const cur = this.galleryPage;
+    let start = Math.max(1, cur - 2);
+    let end = Math.min(t, start + 4);
+    start = Math.max(1, end - 4);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }
+
+  goGalleryPage(page: number): void {
+    if (page < 1 || page > this.galleryTotalPages) return;
+    this.galleryPage = page;
+  }
+
+  onGalleryFilterChange(): void {
+    this.galleryPage = 1;
+  }
+
   get visibleResultPages(): number[] {
     const t = this.resultsTotalPages;
     if (t <= 0) return [];
@@ -297,7 +334,7 @@ export class AdminComponent implements OnInit {
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   }
 
-  get filteredFacultyList(): FacultyMemberDTO[] {
+  get allFilteredFacultyList(): FacultyMemberDTO[] {
     let list = [...this.facultyList];
     const q = this.facultySearch.trim().toLowerCase();
     if (q) {
@@ -307,6 +344,39 @@ export class AdminComponent implements OnInit {
       list = list.filter(f => f.designation === this.facultyDesignation);
     }
     return list;
+  }
+
+  get filteredFacultyList(): FacultyMemberDTO[] {
+    const all = this.allFilteredFacultyList;
+    const start = (this.facultyPage - 1) * this.facultyPageSize;
+    return all.slice(start, start + this.facultyPageSize);
+  }
+
+  get facultyTotalPages(): number {
+    return Math.ceil(this.allFilteredFacultyList.length / this.facultyPageSize);
+  }
+
+  get facultyTotal(): number {
+    return this.allFilteredFacultyList.length;
+  }
+
+  get visibleFacultyPages(): number[] {
+    const t = this.facultyTotalPages;
+    if (t <= 7) return Array.from({ length: t }, (_, i) => i + 1);
+    const cur = this.facultyPage;
+    let start = Math.max(1, cur - 2);
+    let end = Math.min(t, start + 4);
+    start = Math.max(1, end - 4);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }
+
+  goFacultyPage(page: number): void {
+    if (page < 1 || page > this.facultyTotalPages) return;
+    this.facultyPage = page;
+  }
+
+  onFacultyFilterChange(): void {
+    this.facultyPage = 1;
   }
 
   isGalleryItemHidden(item: GalleryImageDTO): boolean {

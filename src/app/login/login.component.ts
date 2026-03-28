@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(trimmedEmail, this.password).subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/admin']);
       },
       error: (err: unknown) => {
         this.loading = false;

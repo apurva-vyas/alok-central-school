@@ -7,15 +7,15 @@ const router = Router();
 router.post('/contact', async (req: Request, res: Response) => {
   try {
     const { name, email, mobile, message } = req.body;
-    if (!name?.trim() || !email?.trim() || !message?.trim()) {
-      return res.status(400).json({ error: 'Name, email, and message are required' });
+    if (!name?.trim() || !mobile?.trim() || !message?.trim()) {
+      return res.status(400).json({ error: 'Name, mobile number, and message are required' });
     }
 
     const entry = await prisma.contactMessage.create({
       data: {
         name: name.trim(),
-        email: email.trim().toLowerCase(),
-        mobile: mobile?.trim() || null,
+        email: email?.trim()?.toLowerCase() || '',
+        mobile: mobile.trim(),
         message: message.trim(),
       },
     });

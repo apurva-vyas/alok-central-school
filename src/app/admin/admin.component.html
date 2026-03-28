@@ -159,18 +159,18 @@
       <div class="filters-bar card-custom">
         <label class="field field-inline">
           <span class="field-label">Search</span>
-          <input type="search" [(ngModel)]="gallerySearch" name="gallerySearch" placeholder="Search title or category" />
+          <input type="search" [(ngModel)]="gallerySearch" name="gallerySearch" placeholder="Search title or category" (ngModelChange)="onGalleryFilterChange()" />
         </label>
         <label class="field field-inline">
           <span class="field-label">Category</span>
-          <select [(ngModel)]="galleryCategory" name="galleryCategory">
+          <select [(ngModel)]="galleryCategory" name="galleryCategory" (ngModelChange)="onGalleryFilterChange()">
             <option value="all">All categories</option>
             <option *ngFor="let c of galleryCategories" [value]="c">{{ c }}</option>
           </select>
         </label>
         <label class="field field-inline">
           <span class="field-label">Show</span>
-          <select [(ngModel)]="galleryVisibility" name="galleryVisibility">
+          <select [(ngModel)]="galleryVisibility" name="galleryVisibility" (ngModelChange)="onGalleryFilterChange()">
             <option value="all">All</option>
             <option value="active">Active only</option>
             <option value="hidden">Hidden only</option>
@@ -214,6 +214,15 @@
           </div>
         </li>
       </ul>
+
+      <div class="pagination card-custom" *ngIf="galleryTotalPages > 1">
+        <span class="page-info">Page {{ galleryPage }} of {{ galleryTotalPages }} ({{ galleryTotal }} total)</span>
+        <div class="page-buttons">
+          <button type="button" class="btn-secondary-sm" [disabled]="galleryPage <= 1" (click)="goGalleryPage(galleryPage - 1)">Previous</button>
+          <button type="button" class="btn-secondary-sm" *ngFor="let p of visibleGalleryPages" [class.page-active]="galleryPage === p" (click)="goGalleryPage(p)">{{ p }}</button>
+          <button type="button" class="btn-secondary-sm" [disabled]="galleryPage >= galleryTotalPages" (click)="goGalleryPage(galleryPage + 1)">Next</button>
+        </div>
+      </div>
     </section>
 
     <!-- ======================== FACULTY TAB ======================== -->
@@ -230,11 +239,11 @@
       <div class="filters-bar card-custom">
         <label class="field field-inline">
           <span class="field-label">Search by name</span>
-          <input type="search" [(ngModel)]="facultySearch" name="facultySearch" placeholder="Name" />
+          <input type="search" [(ngModel)]="facultySearch" name="facultySearch" placeholder="Name" (ngModelChange)="onFacultyFilterChange()" />
         </label>
         <label class="field field-inline">
           <span class="field-label">Designation</span>
-          <select [(ngModel)]="facultyDesignation" name="facultyDesignation">
+          <select [(ngModel)]="facultyDesignation" name="facultyDesignation" (ngModelChange)="onFacultyFilterChange()">
             <option value="all">All</option>
             <option *ngFor="let d of designationOptions" [value]="d">{{ d }}</option>
           </select>
@@ -288,6 +297,15 @@
           </div>
         </li>
       </ul>
+
+      <div class="pagination card-custom" *ngIf="facultyTotalPages > 1">
+        <span class="page-info">Page {{ facultyPage }} of {{ facultyTotalPages }} ({{ facultyTotal }} total)</span>
+        <div class="page-buttons">
+          <button type="button" class="btn-secondary-sm" [disabled]="facultyPage <= 1" (click)="goFacultyPage(facultyPage - 1)">Previous</button>
+          <button type="button" class="btn-secondary-sm" *ngFor="let p of visibleFacultyPages" [class.page-active]="facultyPage === p" (click)="goFacultyPage(p)">{{ p }}</button>
+          <button type="button" class="btn-secondary-sm" [disabled]="facultyPage >= facultyTotalPages" (click)="goFacultyPage(facultyPage + 1)">Next</button>
+        </div>
+      </div>
     </section>
 
     <!-- ======================== RESULTS TAB ======================== -->
