@@ -22,6 +22,14 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { ResultComponent } from './result/result.component';
 import { CBSEComponent } from './cbse/cbse.component';
 import { VideoGalleryComponent } from './video-gallery/video-gallery.component';
+import { LoginComponent } from './login/login.component';
+import { FacultyComponent } from './faculty/faculty.component';
+import { BoardResultsComponent } from './board-results/board-results.component';
+import { AdminComponent } from './admin/admin.component';
+import { MomentsComponent } from './moments/moments.component';
+import { GenderAvatarComponent } from './shared/gender-avatar/gender-avatar.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,6 +48,12 @@ import { VideoGalleryComponent } from './video-gallery/video-gallery.component';
     ResultComponent,
     CBSEComponent,
     VideoGalleryComponent,
+    LoginComponent,
+    FacultyComponent,
+    BoardResultsComponent,
+    AdminComponent,
+    MomentsComponent,
+    GenderAvatarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +64,9 @@ import { VideoGalleryComponent } from './video-gallery/video-gallery.component';
     NgbModule,
     CarouselComponent,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

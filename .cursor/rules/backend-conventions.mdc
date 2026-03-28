@@ -1,0 +1,43 @@
+---
+description: Express backend conventions for routes, Prisma, and S3
+globs: server/**/*.ts
+alwaysApply: false
+---
+
+# Backend Conventions
+
+## Route Structure
+Every resource follows this pattern:
+- `GET /api/<resource>` — public, `isActive: true` only, limited `select`
+- `GET /api/admin/<resource>` — `authMiddleware`, returns all records
+- `POST /api/<resource>` — `authMiddleware` + `upload.single('file')`, create
+- `PUT /api/<resource>/:id` — `authMiddleware` + optional file, update
+- `PATCH /api/<resource>/:id/toggle` — `authMiddleware`, flip `isActive`
+- `DELETE /api/<resource>/:id` — `authMiddleware`, delete S3 file + DB row
+
+## S3 Uploads
+- Always wrap `uploadToS3()` in try/catch — log the error but don't fail the request.
+- If photo upload fails, save the record without the photo (`photoUrl` = null).
+
+```typescript
+// ✅ Correct
+let photoUrl: string | undefined;
+if (req.file) {
+  try {
+    const result = await uploadToS3(req.file, 'folder');
+    photoUrl = result.s3Url;
+  } catch (err) {
+    console.error('S3 upload failed:', err);
+  }
+}
+```
+
+## Error Responses
+- Always return `{ error: "description" }` with the appropriate HTTP status.
+- Log server errors with `console.error` before returning 500.
+- Never expose stack traces or internal details to the client.
+
+## Prisma
+- Use `lib/prisma.ts` singleton — never create new instances.
+- New models must include: `id` (uuid), `isActive` (default true), `createdAt`, `updatedAt`.
+- Run `npx prisma db push` and `npx prisma generate` after schema changes.

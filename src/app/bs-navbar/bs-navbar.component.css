@@ -282,4 +282,63 @@ header.scrolled .brand-logo {
     padding-left: var(--space-2xl) !important;
   }
 
+  .nav-auth {
+    padding: var(--space-sm) var(--space-md);
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+/* Auth icon / avatar */
+.nav-auth {
+  display: flex;
+  align-items: center;
+  margin-left: var(--space-md);
+  position: relative;
+}
+
+.auth-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: var(--clr-navbar-text);
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.auth-icon:hover {
+  background: rgba(255,255,255,0.2);
+  color: var(--clr-secondary);
+}
+
+.auth-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--clr-secondary);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  transition: transform var(--transition-fast);
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.auth-dropdown .dropdown-menu-custom {
+  right: 0;
+  left: auto;
+  min-width: 160px;
 }

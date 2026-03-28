@@ -1,0 +1,177 @@
+<section class="board-results-section section-padding">
+  <div class="site-container">
+    <h1 class="page-title">Board Results</h1>
+    <div class="results-layout">
+      <aside class="year-sidebar" aria-label="Filter by year">
+        <ul class="year-list">
+          <li
+            *ngFor="let year of years"
+            class="year-item"
+            [class.active]="year === selectedYear"
+            (click)="selectYear(year)"
+            role="button"
+            tabindex="0"
+          >
+            {{ year }}
+          </li>
+        </ul>
+      </aside>
+
+      <div class="results-main">
+        <div class="board-tabs" role="tablist">
+          <button
+            type="button"
+            class="filter-btn"
+            [class.active]="selectedBoard === 'CBSE'"
+            (click)="selectBoard('CBSE')"
+          >
+            CBSE
+          </button>
+          <button
+            type="button"
+            class="filter-btn"
+            [class.active]="selectedBoard === 'RBSE'"
+            (click)="selectBoard('RBSE')"
+          >
+            RBSE
+          </button>
+        </div>
+
+        <div class="results-loading-wrap" *ngIf="loading">
+          <div class="spinner"></div>
+          <p>Loading results...</p>
+        </div>
+
+        <ng-container *ngIf="!loading">
+          <p class="results-info">
+            Showing {{ total }} results for {{ selectedBoard }} {{ selectedYear }}
+          </p>
+
+          <!-- Empty State -->
+          <div class="results-empty" *ngIf="results.length === 0">
+            <div class="empty-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" viewBox="0 0 16 16">
+                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+              </svg>
+            </div>
+            <h3 class="empty-title">No Results Available</h3>
+            <p class="empty-text">
+              Board exam results for {{ selectedBoard }} {{ selectedYear }} have not been published yet.
+              Please check back later or select a different year/board.
+            </p>
+          </div>
+
+          <!-- Student Grid -->
+          <div class="student-grid" *ngIf="results.length > 0">
+            <article
+              class="student-card card-custom"
+              *ngFor="let student of results"
+              (click)="openDetail(student)"
+              (keyup.enter)="openDetail(student)"
+              tabindex="0"
+              role="button"
+            >
+              <div class="student-photo-wrap">
+                <img *ngIf="showPhoto(student.id, student.photoUrl)"
+                     [src]="student.photoUrl!" [alt]="student.name"
+                     class="student-photo" loading="lazy"
+                     (error)="onImgError(student.id)" />
+                <app-gender-avatar *ngIf="!showPhoto(student.id, student.photoUrl)"
+                                   [gender]="student.gender" [size]="100">
+                </app-gender-avatar>
+              </div>
+              <h3 class="student-name">{{ student.name }}</h3>
+              <p class="student-percentage">{{ student.percentage }}%</p>
+            </article>
+          </div>
+
+          <div class="pagination" *ngIf="totalPages > 1">
+            <button
+              type="button"
+              class="page-btn"
+              (click)="goToPage(currentPage - 1)"
+              [disabled]="currentPage === 1"
+            >
+              &laquo; Prev
+            </button>
+            <button
+              *ngFor="let p of pages"
+              type="button"
+              class="page-btn"
+              [class.active]="p === currentPage"
+              (click)="goToPage(p)"
+            >
+              {{ p }}
+            </button>
+            <button
+              type="button"
+              class="page-btn"
+              (click)="goToPage(currentPage + 1)"
+              [disabled]="currentPage === totalPages"
+            >
+              Next &raquo;
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div
+  class="detail-overlay"
+  *ngIf="selectedStudent as s"
+  (click)="closeDetail()"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="detail-student-name"
+>
+  <div class="detail-card" (click)="$event.stopPropagation()">
+    <button type="button" class="detail-close" (click)="closeDetail()" aria-label="Close">
+      &times;
+    </button>
+
+    <div class="detail-photo-wrap">
+      <img *ngIf="showPhoto(s.id, s.photoUrl)"
+           [src]="s.photoUrl!" [alt]="s.name"
+           class="detail-photo" loading="lazy"
+           (error)="onImgError(s.id)" />
+      <app-gender-avatar *ngIf="!showPhoto(s.id, s.photoUrl)"
+                         [gender]="s.gender" [size]="140">
+      </app-gender-avatar>
+    </div>
+
+    <span *ngIf="isSchoolTopper(s)" class="topper-badge">School Topper</span>
+
+    <h2 id="detail-student-name" class="detail-name">{{ s.name }}</h2>
+    <p class="detail-meta">{{ s.className }} · {{ s.board }} · {{ s.year }}</p>
+
+    <dl class="detail-list">
+      <div class="detail-row">
+        <dt>Father's name</dt>
+        <dd>{{ s.fatherName }}</dd>
+      </div>
+      <div class="detail-row">
+        <dt>Gender</dt>
+        <dd>{{ s.gender }}</dd>
+      </div>
+      <div class="detail-row" *ngIf="s.rollNumber">
+        <dt>Roll number</dt>
+        <dd>{{ s.rollNumber }}</dd>
+      </div>
+      <div class="detail-row" *ngIf="s.dob">
+        <dt>Date of birth</dt>
+        <dd>{{ s.dob | date : 'mediumDate' }}</dd>
+      </div>
+      <div class="detail-row" *ngIf="s.admissionNo">
+        <dt>Admission no.</dt>
+        <dd>{{ s.admissionNo }}</dd>
+      </div>
+      <div class="detail-row">
+        <dt>Percentage</dt>
+        <dd class="detail-percentage">{{ s.percentage }}%</dd>
+      </div>
+    </dl>
+  </div>
+</div>

@@ -54,10 +54,10 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="admission" routerLinkActive="active-link" (click)="closeMenu()">Admissions</a>
           </li>
-
           <li class="nav-item">
-            <a class="nav-link" routerLink="services" routerLinkActive="active-link" (click)="closeMenu()">Facilities</a>
+            <a class="nav-link" routerLink="results" routerLinkActive="active-link" (click)="closeMenu()">Results</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" routerLink="gallery" routerLinkActive="active-link" (click)="closeMenu()">Gallery</a>
           </li>
@@ -69,7 +69,8 @@
             <a class="nav-link dropdown-toggle-custom">About</a>
             <ul class="dropdown-menu-custom" [class.open]="isAboutSubmenuOpen">
               <li><a routerLink="about" (click)="closeMenu()">School Info</a></li>
-              <li><a routerLink="result" (click)="closeMenu()">10th Board Results</a></li>
+              <li><a routerLink="services" (click)="closeMenu()">Facilities</a></li>
+              <li><a routerLink="faculty" (click)="closeMenu()">Our Faculty</a></li>
               <li><a routerLink="cbse" (click)="closeMenu()">CBSE Information</a></li>
             </ul>
           </li>
@@ -78,6 +79,22 @@
             <a class="nav-link" routerLink="contact" routerLinkActive="active-link" (click)="closeMenu()">Contact</a>
           </li>
         </ul>
+
+        <div class="nav-auth">
+          <a *ngIf="!authService.isLoggedIn()" routerLink="/login"
+             class="auth-icon" (click)="closeMenu()" title="Admin Login">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+            </svg>
+          </a>
+          <div *ngIf="authService.isLoggedIn()" class="auth-dropdown">
+            <span class="avatar" (click)="toggleAuthDropdown($event)">{{ authService.currentUserInitial() }}</span>
+            <ul class="dropdown-menu-custom" [class.open]="isAuthDropdownOpen">
+              <li><a routerLink="/admin" (click)="closeMenu()">Dashboard</a></li>
+              <li><a (click)="logout()">Logout</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </nav>

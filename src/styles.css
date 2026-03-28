@@ -151,6 +151,31 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-padding {
   padding: var(--space-4xl) 0;
+  padding-top: clamp(100px, 14vw, 140px);
+}
+
+.section-padding:first-child {
+  padding-top: clamp(120px, 16vw, 160px);
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  text-align: center;
+  color: var(--clr-primary);
+  margin: 0 0 var(--space-xl);
+  position: relative;
+}
+
+.page-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--clr-secondary);
+  border-radius: var(--radius-full);
+  margin: var(--space-sm) auto 0;
 }
 
 .section-title {
