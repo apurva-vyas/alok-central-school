@@ -30,7 +30,7 @@ backend:
         - cd server && npm ci
     build:
       commands:
-        - cd server && npx prisma generate && npm run build
+        - npx prisma generate && npm run build
   artifacts:
     baseDirectory: server/dist
     files:
