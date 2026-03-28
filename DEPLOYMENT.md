@@ -82,7 +82,9 @@ This creates 5 tables: `admin_users`, `gallery_images`, `faculty_members`, `stud
 
 ### Environment Variables
 
-Go to **Amplify Console → App Settings → Environment Variables** and add:
+Go to **Amplify Console → Hosting → Environment variables → Manage variables** and add:
+
+> **Note:** Amplify reserves the `AWS_` prefix — all S3 variables use the `S3_` prefix instead.
 
 | Key | Value |
 |-----|-------|
@@ -90,10 +92,10 @@ Go to **Amplify Console → App Settings → Environment Variables** and add:
 | `DIRECT_URL` | `postgresql://postgres:PASSWORD@db.PROJECT.supabase.co:5432/postgres` |
 | `JWT_SECRET` | (random 64+ character string) |
 | `STORAGE_PROVIDER` | `aws` |
-| `AWS_S3_BUCKET` | `alok-central-school` |
-| `AWS_S3_REGION` | `ap-south-1` |
-| `AWS_ACCESS_KEY_ID` | (your IAM access key) |
-| `AWS_SECRET_ACCESS_KEY` | (your IAM secret key) |
+| `S3_BUCKET` | `alok-central-school` |
+| `S3_REGION` | `ap-south-1` |
+| `S3_ACCESS_KEY_ID` | (your IAM access key) |
+| `S3_SECRET_ACCESS_KEY` | (your IAM secret key) |
 | `CORS_ORIGIN` | `https://your-app.amplifyapp.com` |
 | `NODE_ENV` | `production` |
 

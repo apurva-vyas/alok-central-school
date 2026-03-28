@@ -14,10 +14,10 @@ const s3Config = STORAGE_PROVIDER === 'supabase'
       forcePathStyle: true,
     }
   : {
-      region: process.env.AWS_S3_REGION || 'ap-south-1',
+      region: process.env.S3_REGION || 'ap-south-1',
       credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+        accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
       },
     };
 
@@ -25,13 +25,13 @@ const s3 = new S3Client(s3Config);
 
 const BUCKET = STORAGE_PROVIDER === 'supabase'
   ? (process.env.SUPABASE_S3_BUCKET || 'images')
-  : (process.env.AWS_S3_BUCKET || 'alok-central-school');
+  : (process.env.S3_BUCKET || 'alok-central-school');
 
 function getPublicUrl(s3Key: string): string {
   if (STORAGE_PROVIDER === 'supabase') {
     return `${process.env.SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${s3Key}`;
   }
-  return `https://${BUCKET}.s3.${process.env.AWS_S3_REGION || 'ap-south-1'}.amazonaws.com/${s3Key}`;
+  return `https://${BUCKET}.s3.${process.env.S3_REGION || 'ap-south-1'}.amazonaws.com/${s3Key}`;
 }
 
 export async function uploadToS3(

@@ -215,10 +215,10 @@ DATABASE_URL=postgresql://user:password@localhost:5432/alok_central_school
 DIRECT_URL=postgresql://user:password@localhost:5432/alok_central_school
 JWT_SECRET=your-secret-key-here
 STORAGE_PROVIDER=aws
-AWS_S3_BUCKET=your-bucket-name
-AWS_S3_REGION=ap-south-1
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
+S3_BUCKET=your-bucket-name
+S3_REGION=ap-south-1
+S3_ACCESS_KEY_ID=your-access-key
+S3_SECRET_ACCESS_KEY=your-secret-key
 CORS_ORIGIN=http://localhost:4200
 ```
 
