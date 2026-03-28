@@ -1,0 +1,34 @@
+---
+description: Keep DEPLOYMENT.md updated when deployment-related files change
+globs: amplify.yml,Dockerfile,docker-compose*.yml,buildspec.yml,.github/workflows/**,server/package.json,angular.json,src/environments/environment.prod.ts
+alwaysApply: false
+---
+
+# Deployment Documentation Sync
+
+When modifying any deployment-related file, **also update `DEPLOYMENT.md`** to reflect the change.
+
+## What counts as a deployment change
+
+- `amplify.yml` — build phases, artifacts, cache, custom headers
+- CI/CD configs — GitHub Actions, buildspec, Dockerfiles
+- `server/package.json` — new build/start scripts or dependency changes that affect the deploy
+- `src/environments/environment.prod.ts` — production API URLs or feature flags
+- Environment variable additions/removals that must be set in Amplify Console
+- Rewrite/redirect rule changes
+
+## What to update in DEPLOYMENT.md
+
+- **Build Commands** table if build steps changed
+- **Environment Variables** table if new env vars are required
+- **Amplify Build Notes** section if `amplify.yml` behavior changed
+- **Troubleshooting** table if the change fixes or introduces a known issue
+- **Architecture** diagram if infrastructure topology changed
+
+## Example
+
+If you add a new env var `SMTP_HOST` needed by the server:
+
+1. Make the code change
+2. Add `SMTP_HOST` to the Environment Variables table in `DEPLOYMENT.md`
+3. Add it to `server/.env.example` as well
