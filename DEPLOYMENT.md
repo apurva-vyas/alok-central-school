@@ -73,18 +73,20 @@ This creates 5 tables: `admin_users`, `gallery_images`, `faculty_members`, `stud
 
 4. Save the Access Key ID and Secret Access Key
 
-## Step 3: AWS Amplify Setup
+## Step 3: Create AWS Lambda Function (one-time)
 
-1. Go to **AWS Amplify Console** → **New App** → **Host web app**
-2. Connect your GitHub repo (`alok-central-school`)
-3. Select the branch (e.g., `main`)
-4. Amplify will auto-detect `amplify.yml`
-
-### Environment Variables
-
-Go to **Amplify Console → Hosting → Environment variables → Manage variables** and add:
-
-> **Note:** Amplify reserves the `AWS_` prefix — all S3 variables use the `S3_` prefix instead.
+1. Go to **AWS Console → Lambda → Create function**
+2. Choose **Author from scratch**
+3. Settings:
+   - **Function name:** `alok-central-school-api` (must match the name in `amplify.yml`)
+   - **Runtime:** `Node.js 20.x`
+   - **Architecture:** `x86_64`
+4. Click **Create function**
+5. Go to **Configuration → General configuration → Edit**:
+   - **Handler:** `index.handler`
+   - **Timeout:** `30 seconds`
+   - **Memory:** `256 MB`
+6. Go to **Configuration → Environment variables** and add:
 
 | Key | Value |
 |-----|-------|
@@ -99,18 +101,69 @@ Go to **Amplify Console → Hosting → Environment variables → Manage variabl
 | `CORS_ORIGIN` | `https://your-app.amplifyapp.com` |
 | `NODE_ENV` | `production` |
 
+7. Go to **Configuration → Function URL → Create function URL**
+   - Auth type: **NONE**
+   - Save and copy the URL (e.g., `https://abc123.lambda-url.ap-south-1.on.aws`)
+
+## Step 4: Grant Amplify Permission to Deploy Lambda
+
+The `amplify.yml` auto-deploys the backend to Lambda on every push. For this to work, the Amplify service role needs Lambda + S3 permissions:
+
+1. Go to **Amplify Console → App settings → General → Service role** — note the role name (e.g., `amplifyconsole-backend-role`)
+2. Go to **AWS Console → IAM → Roles** → find that role
+3. Click **Add permissions → Create inline policy** → JSON tab → paste:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "lambda:UpdateFunctionCode",
+      "Resource": "arn:aws:lambda:ap-south-1:YOUR_ACCOUNT_ID:function:alok-central-school-api"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::alok-central-school/deploy/*"
+    }
+  ]
+}
+```
+
+Replace `YOUR_ACCOUNT_ID` with your 12-digit AWS account ID.
+
+## Step 5: AWS Amplify Setup
+
+1. Go to **AWS Amplify Console** → **New App** → **Host web app**
+2. Connect your GitHub repo (`alok-central-school`)
+3. Select the branch (e.g., `release-v2`)
+4. Amplify will auto-detect `amplify.yml`
+
+### Amplify Environment Variables
+
+Go to **Amplify Console → Hosting → Environment variables → Manage variables** and add:
+
+> **Note:** Amplify reserves the `AWS_` prefix — all S3 variables use the `S3_` prefix instead.
+
+| Key | Value |
+|-----|-------|
+| `NODE_ENV` | `production` |
+
+(Database and S3 credentials go in the **Lambda** environment variables in Step 3, not here.)
+
 ### Rewrites / Redirects
 
-Go to **Amplify Console → App Settings → Rewrites and redirects** and add:
+Go to **Amplify Console → Hosting → Rewrites and redirects → Manage redirects** and add (in this order):
 
 | Source | Target | Type |
 |--------|--------|------|
-| `/api/<*>` | `https://your-lambda-url.amazonaws.com/api/<*>` | 200 (Proxy) |
+| `/api/<*>` | `https://YOUR-LAMBDA-FUNCTION-URL/api/<*>` | 200 (Rewrite) |
 | `/<*>` | `/index.html` | 200 (Rewrite) |
 
-The first rule proxies API calls to Lambda. The second enables Angular routing.
+Replace `YOUR-LAMBDA-FUNCTION-URL` with the Function URL from Step 3.
 
-## Step 4: Deploy
+## Step 6: Deploy
 
 1. Push to GitHub:
 
