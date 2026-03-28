@@ -27,7 +27,7 @@ backend:
   phases:
     preBuild:
       commands:
-        - (cd server && npm ci)
+        - (cd server && npm ci --include=dev)
     build:
       commands:
         - (cd server && npx prisma generate && npm run build)

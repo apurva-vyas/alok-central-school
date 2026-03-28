@@ -179,6 +179,7 @@ npx ng serve
 - In `amplify.yml`, **all phases share a single shell** — the working directory persists across backend preBuild → backend build → frontend preBuild → frontend build.
 - Backend commands that `cd server` must be wrapped in **subshells** using parentheses `(cd server && ...)` so the CWD resets to the project root after each command. Without this, the frontend phases would run inside `server/` and execute the wrong `package.json`.
 - Current backend build flow: both `preBuild` and `build` use `(cd server && ...)` subshells, so the frontend always starts from the project root.
+- Backend `npm ci` must use `--include=dev` because `NODE_ENV=production` (set in Amplify env vars) causes npm to skip devDependencies. The server needs `@types/*` packages and `typescript` at build time.
 
 ## Troubleshooting
 
@@ -191,3 +192,4 @@ npx ng serve
 | Angular routing 404 | Add `/<*>` → `/index.html` rewrite rule |
 | Build fails | Check `amplify.yml` and build logs in console |
 | Frontend runs `tsc` instead of `ng build` | Backend `cd server` leaked into frontend — wrap backend commands in subshells: `(cd server && ...)` |
+| `TS7016: Could not find declaration file` | `NODE_ENV=production` skips devDependencies — use `npm ci --include=dev` in the backend preBuild |
