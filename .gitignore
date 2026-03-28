@@ -42,6 +42,10 @@ server/.env
 server/dist
 server/node_modules
 
+# Deployment artifacts
+lambda-deploy.zip
+*.zip
+
 # System files
 .DS_Store
 Thumbs.db
