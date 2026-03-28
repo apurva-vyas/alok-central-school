@@ -170,13 +170,13 @@ Replace `YOUR-LAMBDA-FUNCTION-URL` with the Function URL from Step 3.
 ```bash
 git add .
 git commit -m "Production deployment"
-git push origin main
+git push origin release-v2
 ```
 
-2. Amplify auto-builds and deploys
+2. Amplify auto-builds frontend + auto-deploys backend to Lambda
 3. Check build logs in Amplify Console
 
-## Step 5: Verify
+## Step 7: Verify
 
 1. Visit your Amplify URL
 2. Check `/api/health` returns `{"status":"ok"}`
