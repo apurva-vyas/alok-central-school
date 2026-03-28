@@ -37,8 +37,10 @@ yarn-error.log
 testem.log
 /typings
 
-# Server environment
+# Server
 server/.env
+server/dist
+server/node_modules
 
 # System files
 .DS_Store

@@ -4,7 +4,6 @@ import {
   StudentResultDTO,
   PaginatedResults,
 } from '../shared/results-api.service';
-import { IMAGES } from '../shared/image-registry';
 
 @Component({
   selector: 'app-board-results',
@@ -12,8 +11,6 @@ import { IMAGES } from '../shared/image-registry';
   styleUrls: ['./board-results.component.css'],
 })
 export class BoardResultsComponent implements OnInit {
-  heroImage = IMAGES.campus.cbseHero;
-
   years: number[] = [];
   selectedYear = 0;
   selectedBoard = 'RBSE';

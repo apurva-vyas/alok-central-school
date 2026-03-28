@@ -1,5 +1,10 @@
 import { Component, HostListener } from '@angular/core';
-import { IMAGES, GALLERY_IMAGES, GalleryImage } from '../shared/image-registry';
+
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  category: string;
+}
 
 @Component({
   selector: 'app-gallery',
@@ -7,7 +12,6 @@ import { IMAGES, GALLERY_IMAGES, GalleryImage } from '../shared/image-registry';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent {
-  galleryHero = IMAGES.campus.galleryHero;
   activeFilter = 'all';
   pageSize = 12;
   currentPage = 1;
@@ -21,7 +25,7 @@ export class GalleryComponent {
   private startX = 0;
   private startY = 0;
 
-  images: GalleryImage[] = GALLERY_IMAGES;
+  images: GalleryImage[] = [];
 
   filteredImages: GalleryImage[] = [];
 

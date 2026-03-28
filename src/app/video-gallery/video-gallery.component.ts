@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SCHOOL_INFO } from '../shared/school-info';
 import { YouTubeService, YouTubeVideo } from '../shared/youtube.service';
-import { IMAGES } from '../shared/image-registry';
 
 @Component({
   selector: 'app-video-gallery',
@@ -10,7 +9,6 @@ import { IMAGES } from '../shared/image-registry';
   styleUrls: ['./video-gallery.component.css']
 })
 export class VideoGalleryComponent implements OnInit {
-  heroImage = IMAGES.campus.galleryHero;
   channelUrl = SCHOOL_INFO.social.youtube;
 
   videos: YouTubeVideo[] = [];

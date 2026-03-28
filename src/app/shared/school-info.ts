@@ -22,6 +22,5 @@ export const SCHOOL_INFO = {
   },
   contactFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfT9AahxDVQiMq9K4kcyCzuIVmGiMnMcmJG16w9EG3-HDdnrg/viewform?embedded=true',
   admissionFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScKlZIDW5d0Zw0AL7UnKSS61yf0MVTe-FoSnlouay1QCJEcMw/viewform?embedded=true',
-  heroImage: IMAGES.campus.hero,
   logo: IMAGES.branding.logo,
 } as const;

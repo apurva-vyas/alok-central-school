@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { IMAGES } from '../shared/image-registry';
 import { GalleryApiService, GalleryImageDTO } from '../shared/gallery-api.service';
 
 interface MomentsImage {
@@ -15,7 +14,6 @@ interface MomentsImage {
   styleUrls: ['./moments.component.css'],
 })
 export class MomentsComponent implements OnInit {
-  galleryHero = IMAGES.campus.galleryHero;
   activeFilter = 'all';
   pageSize = 12;
   currentPage = 1;

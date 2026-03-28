@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { SCHOOL_INFO } from '../shared/school-info';
-import { IMAGES } from '../shared/image-registry';
 import { ContactApiService } from '../shared/contact-api.service';
 
 @Component({
@@ -9,7 +8,6 @@ import { ContactApiService } from '../shared/contact-api.service';
   styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent {
-  heroImage = IMAGES.campus.cbseHero;
   school = SCHOOL_INFO;
 
   form = { name: '', email: '', mobile: '', message: '' };
