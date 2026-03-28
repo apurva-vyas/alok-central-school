@@ -152,16 +152,25 @@ Go to **Amplify Console → Hosting → Environment variables → Manage variabl
 
 (Database and S3 credentials go in the **Lambda** environment variables in Step 3, not here.)
 
+### API Connection
+
+The Angular app calls the Lambda Function URL directly via `src/environments/environment.prod.ts`:
+
+```typescript
+apiUrl: 'https://YOUR-LAMBDA-FUNCTION-URL/api'
+```
+
+Replace with the Function URL from Step 3. No Amplify rewrite rules needed for the API.
+
 ### Rewrites / Redirects
 
-Go to **Amplify Console → Hosting → Rewrites and redirects → Manage redirects** and add (in this order):
+Go to **Amplify Console → Hosting → Rewrites and redirects → Manage redirects** and add:
 
 | Source | Target | Type |
 |--------|--------|------|
-| `/api/<*>` | `https://YOUR-LAMBDA-FUNCTION-URL/api/<*>` | 200 (Rewrite) |
 | `/<*>` | `/index.html` | 200 (Rewrite) |
 
-Replace `YOUR-LAMBDA-FUNCTION-URL` with the Function URL from Step 3.
+This enables Angular's client-side routing (deep links like `/faculty`, `/admin` won't 404).
 
 ## Step 6: Deploy
 
