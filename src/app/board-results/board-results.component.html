@@ -1,7 +1,7 @@
 <section class="board-results-section section-padding">
   <div class="site-container">
-    <h1 class="page-title">Board Results</h1>
-    <div class="results-layout">
+    <h1 class="page-title" appReveal="fade-up">Board Results</h1>
+    <div class="results-layout" appReveal="fade-up" [revealDelay]="100">
       <aside class="year-sidebar" aria-label="Filter by year">
         <ul class="year-list">
           <li
@@ -66,7 +66,8 @@
           <div class="student-grid" *ngIf="results.length > 0">
             <article
               class="student-card card-custom"
-              *ngFor="let student of results"
+              *ngFor="let student of results; let i = index"
+              appReveal="fade-up" [revealDelay]="(i % 6) * 80"
               (click)="openDetail(student)"
               (keyup.enter)="openDetail(student)"
               tabindex="0"

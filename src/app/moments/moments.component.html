@@ -1,13 +1,13 @@
 <section class="gallery-section section-padding">
   <div class="site-container">
-    <h1 class="page-title">Photo Gallery</h1>
+    <h1 class="page-title" appReveal="fade-up">Photo Gallery</h1>
 
     <div class="loading-state" *ngIf="loading">
       <div class="spinner"></div>
       <p>Loading gallery...</p>
     </div>
 
-    <div class="empty-gallery" *ngIf="!loading && images.length === 0">
+    <div class="empty-gallery" *ngIf="!loading && images.length === 0" appReveal="fade-in">
       <div class="empty-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" viewBox="0 0 16 16">
           <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -31,6 +31,7 @@
 
       <div class="gallery-grid">
         <div class="gallery-item" *ngFor="let image of paginatedImages; let i = index"
+             appReveal="scale-up" [revealDelay]="(i % 6) * 80"
              (click)="openLightbox(i)">
           <img [src]="image.src" [alt]="image.alt" loading="lazy">
           <div class="gallery-item-overlay">

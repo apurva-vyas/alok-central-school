@@ -1,8 +1,8 @@
 <section class="login-section section-padding">
   <div class="site-container">
-    <h1 class="page-title">Admin Login</h1>
+    <h1 class="page-title" appReveal="fade-up">Admin Login</h1>
     <div class="login-form-wrap">
-      <div class="login-card card-custom">
+      <div class="login-card card-custom" appReveal="scale-up" [revealDelay]="150">
         <form (ngSubmit)="onSubmit()" class="login-form" novalidate>
           <p *ngIf="errorMessage" class="login-error" role="alert">{{ errorMessage }}</p>
 

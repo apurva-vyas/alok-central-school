@@ -182,9 +182,9 @@ header.scrolled .brand-logo {
   padding-left: var(--space-xl);
 }
 
-/* Hamburger toggler */
+/* Hamburger toggler — hidden on desktop, shown on mobile */
 .navbar-toggler {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 5px;
   padding: var(--space-sm);
@@ -205,6 +205,10 @@ header.scrolled .brand-logo {
 
 /* Mobile */
 @media (max-width: 991px) {
+  .navbar-toggler {
+    display: flex;
+  }
+
   header {
     background: var(--clr-navbar);
   }

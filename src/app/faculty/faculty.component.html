@@ -1,13 +1,13 @@
 <section class="faculty-section section-padding">
   <div class="site-container">
-    <h1 class="page-title">Our Faculty</h1>
+    <h1 class="page-title" appReveal="fade-up">Our Faculty</h1>
     <div class="faculty-loading-wrap" *ngIf="loading">
       <div class="spinner"></div>
       <p>Loading faculty...</p>
     </div>
 
     <ng-container *ngIf="!loading">
-      <div class="faculty-empty" *ngIf="featuredMembers.length === 0 && allStaff.length === 0">
+      <div class="faculty-empty" *ngIf="featuredMembers.length === 0 && allStaff.length === 0" appReveal="fade-in">
         <div class="empty-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
             <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
@@ -20,7 +20,8 @@
       <ng-container *ngIf="featuredMembers.length > 0 || allStaff.length > 0">
         <!-- Featured: Director, Principal, Vice Principal -->
         <div class="featured-row" *ngIf="featuredMembers.length > 0">
-          <div class="faculty-principal-wrap" *ngFor="let member of featuredMembers">
+          <div class="faculty-principal-wrap" *ngFor="let member of featuredMembers; let i = index"
+               appReveal="scale-up" [revealDelay]="i * 150">
             <article class="faculty-card faculty-card--principal card-custom">
               <div class="faculty-photo-wrap faculty-photo-wrap--principal">
                 <img *ngIf="showPhoto(member.id, member.photoUrl)"
@@ -39,11 +40,12 @@
 
         <!-- All Staff (flat grid, no category subdivisions) -->
         <ng-container *ngIf="allStaff.length > 0">
-          <h2 class="section-title">Our Team</h2>
-          <p class="faculty-count">{{ allStaff.length }} member{{ allStaff.length > 1 ? 's' : '' }}</p>
+          <h2 class="section-title" appReveal="fade-up">Our Team</h2>
+          <p class="faculty-count" appReveal="fade-in">{{ allStaff.length }} member{{ allStaff.length > 1 ? 's' : '' }}</p>
 
           <div class="faculty-grid">
-            <article class="faculty-card card-custom" *ngFor="let member of paginatedStaff">
+            <article class="faculty-card card-custom" *ngFor="let member of paginatedStaff; let i = index"
+                     appReveal="fade-up" [revealDelay]="(i % 8) * 80">
               <div class="faculty-photo-wrap">
                 <img *ngIf="showPhoto(member.id, member.photoUrl)"
                      [src]="member.photoUrl!" [alt]="member.name"

@@ -1,6 +1,6 @@
 <section class="video-section section-padding">
   <div class="site-container">
-    <h1 class="page-title">Video Gallery</h1>
+    <h1 class="page-title" appReveal="fade-up">Video Gallery</h1>
 
     <!-- Loading State -->
     <div *ngIf="loading" class="loading-state">
@@ -9,7 +9,7 @@
     </div>
 
     <!-- Error State -->
-    <div *ngIf="error" class="error-state card-custom">
+    <div *ngIf="error" class="error-state card-custom" appReveal="fade-in">
       <p>{{ error }}</p>
       <a [href]="channelUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-custom">
         <app-icon name="youtube" [size]="18"></app-icon>
@@ -21,7 +21,7 @@
     <ng-container *ngIf="!loading && !error && videos.length > 0">
 
       <!-- Featured Player -->
-      <div class="video-player-wrap card-custom" *ngIf="activeVideo">
+      <div class="video-player-wrap card-custom" *ngIf="activeVideo" appReveal="fade-up">
         <div class="video-player">
           <iframe [src]="activeUrl" allowfullscreen
                   title="Video Player"
@@ -35,7 +35,7 @@
       </div>
 
       <!-- Channel Link -->
-      <div class="channel-link">
+      <div class="channel-link" appReveal="fade-in" [revealDelay]="200">
         <a [href]="channelUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-custom">
           <app-icon name="youtube" [size]="18"></app-icon>
           View All Videos on YouTube
@@ -43,12 +43,13 @@
       </div>
 
       <!-- Video Grid -->
-      <h3 class="section-title">All Videos ({{ videos.length }})</h3>
-      <p class="section-subtitle">Latest uploads shown first. Click any video to play it above.</p>
+      <h3 class="section-title" appReveal="fade-up">All Videos ({{ videos.length }})</h3>
+      <p class="section-subtitle" appReveal="fade-up" [revealDelay]="80">Latest uploads shown first. Click any video to play it above.</p>
 
       <div class="video-grid">
-        <div *ngFor="let video of paginatedVideos"
+        <div *ngFor="let video of paginatedVideos; let i = index"
              class="video-card card-custom"
+             appReveal="fade-up" [revealDelay]="(i % 6) * 100"
              [class.active]="activeVideo && video.id === activeVideo.id"
              (click)="playVideo(video)">
           <div class="video-thumb">

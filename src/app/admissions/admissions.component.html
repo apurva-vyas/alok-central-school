@@ -1,8 +1,8 @@
 <section class="admissions-section section-padding">
   <div class="site-container">
-    <h1 class="page-title">Admissions</h1>
-    <p class="section-subtitle">Fill out the form below to begin the admission process for your child at Alok Central School.</p>
-    <div class="form-wrapper card-custom">
+    <h1 class="page-title" appReveal="fade-up">Admissions</h1>
+    <p class="section-subtitle" appReveal="fade-up" [revealDelay]="100">Fill out the form below to begin the admission process for your child at Alok Central School.</p>
+    <div class="form-wrapper card-custom" appReveal="fade-up" [revealDelay]="200">
       <iframe [src]="admissionFormUrl"
               width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0"
               title="Admission Form">Loading...</iframe>

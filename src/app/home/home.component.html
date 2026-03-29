@@ -1,11 +1,12 @@
 <app-carousel></app-carousel>
 
 <!-- Quick Stats -->
-<section class="stats-section">
+<section class="stats-section" #statsSection>
   <div class="site-container">
     <div class="stats-grid">
-      <div class="stat-item" *ngFor="let s of stats">
-        <span class="stat-value">{{ s.number }}<span class="stat-suffix">{{ s.suffix }}</span></span>
+      <div class="stat-item" *ngFor="let s of stats; let i = index"
+           appReveal="fade-up" [revealDelay]="i * 120">
+        <span class="stat-value">{{ s.display }}<span class="stat-suffix">{{ s.suffix }}</span></span>
         <span class="stat-label">{{ s.label }}</span>
       </div>
     </div>
@@ -17,7 +18,7 @@
 <!-- Call to Action -->
 <section class="cta-section">
   <div class="site-container">
-    <div class="cta-content">
+    <div class="cta-content" appReveal="fade-up">
       <h2>Ready to Join Our Family?</h2>
       <p>Give your child the best start with quality education, modern facilities, and a nurturing environment.</p>
       <div class="cta-buttons">

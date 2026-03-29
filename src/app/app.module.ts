@@ -28,6 +28,7 @@ import { BoardResultsComponent } from './board-results/board-results.component';
 import { AdminComponent } from './admin/admin.component';
 import { MomentsComponent } from './moments/moments.component';
 import { GenderAvatarComponent } from './shared/gender-avatar/gender-avatar.component';
+import { ScrollRevealDirective } from './shared/scroll-reveal.directive';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth.interceptor';
 
@@ -54,6 +55,7 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     AdminComponent,
     MomentsComponent,
     GenderAvatarComponent,
+    ScrollRevealDirective,
   ],
   imports: [
     BrowserModule,

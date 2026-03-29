@@ -17,6 +17,9 @@
   border-bottom: 2px solid var(--clr-border);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .tab-btn {
@@ -764,20 +767,28 @@
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
   .admin-page {
-    padding-top: clamp(80px, 12vw, 110px);
+    padding-top: 100px;
   }
 
   .admin-tabs {
-    padding: 0 var(--space-sm);
+    padding: 0;
+    flex-wrap: nowrap;
+    top: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
 
   .tab-btn {
-    padding: var(--space-sm) var(--space-md);
-    font-size: var(--fs-xs);
+    flex: 1;
+    justify-content: center;
+    padding: 12px var(--space-xs);
+    font-size: var(--fs-sm);
+    gap: 6px;
   }
 
   .tab-btn svg {
-    display: none;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
   }
 
   .admin-content {
@@ -836,11 +847,17 @@
 
 @media (max-width: 480px) {
   .admin-page {
-    padding-top: clamp(60px, 10vw, 90px);
+    padding-top: 80px;
   }
 
   .tab-btn {
-    padding: var(--space-xs) var(--space-sm);
+    padding: 10px 6px;
+    font-size: 0.82rem;
+    gap: 4px;
+  }
+
+  .tab-btn svg {
+    display: none;
   }
 
   .list-row {
