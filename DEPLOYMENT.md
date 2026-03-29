@@ -232,7 +232,7 @@ npx ng serve
 ## Custom Domain (Optional)
 
 1. Go to **Amplify Console → Domain Management**
-2. Add your domain (e.g., `www.alokcentralschool.com`)
+2. Add your domain (e.g., `www.alokcentralschool.in`)
 3. Follow DNS verification steps
 4. Update `CORS_ORIGIN` env var to include your domain
 

@@ -22,7 +22,9 @@
               "src/favicon.ico",
               "src/assets",
               "src/web.config",
-              "src/.htaccess"
+              "src/.htaccess",
+              "src/robots.txt",
+              "src/sitemap.xml"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

@@ -41,6 +41,31 @@
   font-weight: 600;
 }
 
+/* ─── Location Section ─── */
+.location-section {
+  background: var(--clr-surface);
+  text-align: center;
+}
+
+.location-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.location-content h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  color: var(--clr-text);
+  margin: 0 0 var(--space-md);
+}
+
+.location-content p {
+  font-size: var(--fs-md);
+  color: var(--clr-text-light);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+}
+
 /* ─── CTA Section ─── */
 .cta-section {
   background: var(--clr-primary);
