@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IMAGES } from '../shared/image-registry';
 
 @Component({
   selector: 'app-cbse',
@@ -8,8 +7,6 @@ import { IMAGES } from '../shared/image-registry';
   styleUrls: ['./cbse.component.css']
 })
 export class CBSEComponent {
-  cbseHero = IMAGES.campus.cbseHero as string;
-
   constructor(private http: HttpClient) {}
 
   documents = [

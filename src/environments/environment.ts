@@ -1,5 +1,7 @@
 export const environment = {
   production: false,
+  /** Express API base (see server/src/index.ts). */
+  apiUrl: 'http://localhost:3000/api',
   /*
    * YouTube Data API v3 Key
    *
@@ -12,4 +14,7 @@ export const environment = {
    * 6. Paste the key below
    */
   youtubeApiKey: 'AIzaSyBxLwcpkvL0sylWlv0-0mx5GD6zwCKjlkI',
+  featureFlags: {
+    useNewGallery: true,
+  },
 };

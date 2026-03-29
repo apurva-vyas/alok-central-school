@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { IMAGES } from '../image-registry';
 
 @Component({
   selector: 'app-page-hero',
@@ -12,5 +11,5 @@ import { IMAGES } from '../image-registry';
 })
 export class PageHeroComponent {
   @Input() title = '';
-  @Input() image: string = IMAGES.campus.hero;
+  @Input() image = '';
 }

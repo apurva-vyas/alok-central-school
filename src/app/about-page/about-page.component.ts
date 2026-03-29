@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IMAGES } from '../shared/image-registry';
 
 @Component({
   selector: 'app-about-page',
@@ -7,5 +6,4 @@ import { IMAGES } from '../shared/image-registry';
   styleUrls: ['./about-page.component.css']
 })
 export class AboutPageComponent {
-  heroImage = IMAGES.campus.cbseHero;
 }

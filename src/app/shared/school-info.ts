@@ -11,9 +11,9 @@ export const SCHOOL_INFO = {
   whatsappChatUrl: 'https://wa.me/917014559002',
   address: {
     line1: 'Alok Central School',
-    line2: 'Shahpura, Bhilwara',
-    line3: 'Rajasthan, 311404',
-    mapUrl: 'https://maps.app.goo.gl/jGXs9JDRXi5oL56p7',
+    line2: 'NH 148D, Kalyanpura, Shahpura Rural',
+    line3: 'Rajasthan 311404, India',
+    mapUrl: 'https://maps.app.goo.gl/qKvotw9g1PG4oqjB9',
   },
   social: {
     instagram: 'https://www.instagram.com/alok_central_school_shahpura/',
@@ -22,6 +22,5 @@ export const SCHOOL_INFO = {
   },
   contactFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfT9AahxDVQiMq9K4kcyCzuIVmGiMnMcmJG16w9EG3-HDdnrg/viewform?embedded=true',
   admissionFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScKlZIDW5d0Zw0AL7UnKSS61yf0MVTe-FoSnlouay1QCJEcMw/viewform?embedded=true',
-  heroImage: IMAGES.campus.hero,
   logo: IMAGES.branding.logo,
 } as const;

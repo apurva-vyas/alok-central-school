@@ -1,0 +1,42 @@
+---
+description: Enforce reusable components and shared utilities across frontend and backend
+alwaysApply: true
+---
+
+# Reusability Standards
+
+## Frontend (Angular)
+
+### Shared Components
+- Before creating inline SVGs, templates, or UI patterns that appear on more than one page, create a **shared component** in `src/app/shared/`.
+- Example: `<app-gender-avatar>` is used by faculty, board-results, and admin pages instead of duplicating SVG avatars.
+- Shared components must accept `@Input()` properties for customization (e.g., `size`, `gender`, `variant`).
+- Register all shared components in `app.module.ts` declarations.
+
+### Shared Services
+- All API communication goes through dedicated services in `src/app/shared/` (e.g., `gallery-api.service.ts`, `faculty-api.service.ts`).
+- Never call `HttpClient` directly from components — always go through a service.
+- Use TypeScript interfaces/DTOs exported from the service file for type safety.
+
+### Error Handling
+- Use a consistent error extraction pattern. The admin component has `extractError(err, fallback)` — reuse this pattern in any component that calls APIs.
+- Form overlays must show errors inside the overlay (use `formError`), not behind it on the main page.
+
+### CSS Variables
+- Always use design system variables from `src/styles.css` (e.g., `var(--clr-primary)`, `var(--space-md)`, `var(--fs-sm)`).
+- Never hardcode colors, spacing, or font sizes that already exist as CSS variables.
+
+## Backend (Express)
+
+### Route Patterns
+- All routes follow the same structure: public GET (no auth) + admin GET/POST/PUT/PATCH/DELETE (with `authMiddleware`).
+- Multer config for file uploads is identical across routes — if it diverges, extract to a shared `lib/upload.ts`.
+- S3 upload errors must be caught gracefully: log the error, skip the photo, and still save the record (don't fail the whole request).
+
+### Prisma Queries
+- Use `select` on public endpoints to exclude sensitive fields (e.g., `contactNumber` excluded from public results API).
+- Use the shared `prisma` singleton from `lib/prisma.ts` — never instantiate `new PrismaClient()` in route files.
+
+### Response Shape
+- Error responses: `{ error: "Human-readable message" }` with appropriate HTTP status.
+- Success responses: return the created/updated entity directly, or `204` for deletes.

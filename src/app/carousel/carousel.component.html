@@ -3,27 +3,9 @@
                 [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)"
                 [showNavigationIndicators]="true" [showNavigationArrows]="true">
 
-    <ng-template ngbSlide>
+    <ng-template ngbSlide *ngFor="let img of images">
       <div class="slide-wrapper">
-        <img [src]="images[0]" alt="Alok Central School Campus" />
-        <div class="slide-overlay"></div>
-        <div class="slide-content">
-          <h1>Welcome to Alok Central School</h1>
-          <p>Empowering students with knowledge, skills, and values for a brighter future.</p>
-          <a routerLink="about" class="btn-primary-custom">Discover More</a>
-        </div>
-      </div>
-    </ng-template>
-
-    <ng-template ngbSlide>
-      <div class="slide-wrapper">
-        <img [src]="images[1]" alt="School Building" />
-        <div class="slide-overlay"></div>
-        <div class="slide-content">
-          <h1>Excellence in Education</h1>
-          <p>Nurturing critical thinkers and lifelong learners since 2002.</p>
-          <a routerLink="services" class="btn-primary-custom">Our Facilities</a>
-        </div>
+        <img [src]="img" alt="Alok Central School Shahpura — Best School in Shahpura, Bhilwara, Rajasthan" />
       </div>
     </ng-template>
 

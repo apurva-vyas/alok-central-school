@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SCHOOL_INFO } from '../shared/school-info';
-import { IMAGES } from '../shared/image-registry';
 
 @Component({
   selector: 'app-admissions',
@@ -9,7 +8,6 @@ import { IMAGES } from '../shared/image-registry';
   styleUrls: ['./admissions.component.css']
 })
 export class AdmissionsComponent {
-  heroImage = IMAGES.campus.hero;
   admissionFormUrl: SafeResourceUrl;
 
   constructor(private sanitizer: DomSanitizer) {

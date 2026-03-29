@@ -1,12 +1,6 @@
-<app-page-hero [image]="heroImage" title="10th Board Results"></app-page-hero>
-
 <section class="result-section section-padding">
   <div class="site-container">
-    <p class="section-subtitle">Our students consistently achieve excellent results. View the board examination results below.</p>
-    <div class="result-gallery">
-      <div class="result-item card-custom" *ngFor="let img of images">
-        <img [src]="img" alt="Board Result" loading="lazy">
-      </div>
-    </div>
+    <h1 class="page-title">Board Results</h1>
+    <p class="section-subtitle">View our board examination results on the <a routerLink="/results">Results page</a>.</p>
   </div>
 </section>

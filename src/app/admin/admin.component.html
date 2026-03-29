@@ -1,0 +1,688 @@
+<div class="admin-page">
+  <nav class="admin-tabs" aria-label="Admin sections">
+    <button
+      type="button"
+      class="tab-btn"
+      [class.active]="activeTab === 'gallery'"
+      (click)="switchTab('gallery')"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+      </svg>
+      Gallery
+    </button>
+    <button
+      type="button"
+      class="tab-btn"
+      [class.active]="activeTab === 'faculty'"
+      (click)="switchTab('faculty')"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+      </svg>
+      Faculty
+    </button>
+    <button
+      type="button"
+      class="tab-btn"
+      [class.active]="activeTab === 'results'"
+      (click)="switchTab('results')"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+        <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.272.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"/>
+      </svg>
+      Results
+    </button>
+    <button
+      type="button"
+      class="tab-btn"
+      [class.active]="activeTab === 'messages'"
+      (click)="switchTab('messages')"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+      </svg>
+      Messages
+    </button>
+  </nav>
+
+  <div class="admin-alert admin-alert--error" *ngIf="errorMessage" role="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </svg>
+    {{ errorMessage }}
+  </div>
+
+  <div class="admin-alert admin-alert--success" *ngIf="successMessage">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </svg>
+    {{ successMessage }}
+  </div>
+
+  <main class="admin-content">
+    <!-- ======================== GALLERY TAB ======================== -->
+    <section *ngIf="activeTab === 'gallery'" class="tab-panel">
+      <div class="upload-area card-custom">
+        <div class="upload-header">
+          <h2 class="section-heading">Upload Image</h2>
+          <span class="upload-hint">Accepted: JPEG, PNG, WebP (max 10 MB)</span>
+        </div>
+
+        <div class="upload-form-grid">
+          <label class="field field-file">
+            <span class="field-label">Image Files <span class="req">*</span></span>
+            <div class="file-drop-zone" [class.has-file]="uploadFiles.length > 0">
+              <input type="file" accept="image/jpeg,image/png,image/webp" multiple (change)="onUploadFileSelected($event)" />
+              <div class="file-drop-text" *ngIf="uploadFiles.length === 0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                  <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                </svg>
+                <span>Click or drag images here (select multiple)</span>
+              </div>
+              <div class="file-selected-text" *ngIf="uploadFiles.length > 0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                </svg>
+                {{ uploadFiles.length }} file{{ uploadFiles.length > 1 ? 's' : '' }} selected
+              </div>
+            </div>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Title <span class="field-hint">(optional, auto-generated from filename)</span></span>
+            <input type="text" [(ngModel)]="uploadTitle" name="uploadTitle" placeholder="Leave blank for auto-title" />
+          </label>
+
+          <div class="field">
+            <span class="field-label">Category <span class="req">*</span></span>
+            <div class="category-select-row">
+              <select [(ngModel)]="uploadCategory" name="uploadCategory" class="category-dropdown">
+                <option *ngFor="let c of galleryCategories" [value]="c">{{ c }}</option>
+              </select>
+              <button
+                type="button"
+                class="btn-add-category"
+                (click)="toggleNewCategoryInput()"
+                [title]="showNewCategoryInput ? 'Cancel' : 'Add new category'"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
+                     *ngIf="!showNewCategoryInput">
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"
+                     *ngIf="showNewCategoryInput">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="new-category-row" *ngIf="showNewCategoryInput">
+              <input
+                type="text"
+                [(ngModel)]="newCategoryName"
+                name="newCategory"
+                placeholder="New category name"
+                (keydown.enter)="addNewCategory()"
+              />
+              <button type="button" class="btn-primary-sm" (click)="addNewCategory()">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="upload-action-row">
+          <button
+            type="button"
+            class="btn-primary-action btn-upload"
+            (click)="uploadImage()"
+            [disabled]="uploading"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" *ngIf="!uploading">
+              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+              <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+            </svg>
+            <ng-container *ngIf="!uploading">
+              Upload {{ uploadFiles.length > 1 ? uploadFiles.length + ' Images' : 'Image' }}
+            </ng-container>
+            <ng-container *ngIf="uploading">
+              Uploading {{ uploadProgress }} / {{ uploadTotal }}…
+            </ng-container>
+          </button>
+          <div class="upload-progress-bar" *ngIf="uploading">
+            <div class="upload-progress-fill" [style.width.%]="(uploadProgress / uploadTotal) * 100"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters-bar card-custom">
+        <label class="field field-inline">
+          <span class="field-label">Search</span>
+          <input type="search" [(ngModel)]="gallerySearch" name="gallerySearch" placeholder="Search title or category" (ngModelChange)="onGalleryFilterChange()" />
+        </label>
+        <label class="field field-inline">
+          <span class="field-label">Category</span>
+          <select [(ngModel)]="galleryCategory" name="galleryCategory" (ngModelChange)="onGalleryFilterChange()">
+            <option value="all">All categories</option>
+            <option *ngFor="let c of galleryCategories" [value]="c">{{ c }}</option>
+          </select>
+        </label>
+        <label class="field field-inline">
+          <span class="field-label">Show</span>
+          <select [(ngModel)]="galleryVisibility" name="galleryVisibility" (ngModelChange)="onGalleryFilterChange()">
+            <option value="all">All</option>
+            <option value="active">Active only</option>
+            <option value="hidden">Hidden only</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="empty-state card-custom" *ngIf="filteredGalleryImages.length === 0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+          <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+        </svg>
+        <p>No gallery images found. Upload your first image above.</p>
+      </div>
+
+      <ul class="item-list card-custom list-card" *ngIf="filteredGalleryImages.length > 0">
+        <li
+          *ngFor="let item of filteredGalleryImages"
+          class="list-row"
+          [class.row-hidden]="isGalleryItemHidden(item)"
+        >
+          <img class="thumb" [src]="item.s3Url" [alt]="item.alt || item.title" />
+          <div class="row-main">
+            <div class="row-title">{{ item.title }}</div>
+            <div class="row-meta">
+              <span class="meta-badge">{{ item.category }}</span>
+              <span>{{ formatDate(item.date) }}</span>
+            </div>
+          </div>
+          <label class="toggle-wrap">
+            <input
+              type="checkbox"
+              [checked]="item.isActive !== false"
+              (change)="toggleGalleryItem(item)"
+            />
+            <span>{{ item.isActive !== false ? 'Active' : 'Hidden' }}</span>
+          </label>
+          <div class="row-actions">
+            <button type="button" class="btn-secondary-sm" (click)="openGalleryEdit(item)">Edit</button>
+            <button type="button" class="btn-danger-sm" (click)="deleteGalleryItem(item)">Delete</button>
+          </div>
+        </li>
+      </ul>
+
+      <div class="pagination card-custom" *ngIf="galleryTotalPages > 1">
+        <span class="page-info">Page {{ galleryPage }} of {{ galleryTotalPages }} ({{ galleryTotal }} total)</span>
+        <div class="page-buttons">
+          <button type="button" class="btn-secondary-sm" [disabled]="galleryPage <= 1" (click)="goGalleryPage(galleryPage - 1)">Previous</button>
+          <button type="button" class="btn-secondary-sm" *ngFor="let p of visibleGalleryPages" [class.page-active]="galleryPage === p" (click)="goGalleryPage(p)">{{ p }}</button>
+          <button type="button" class="btn-secondary-sm" [disabled]="galleryPage >= galleryTotalPages" (click)="goGalleryPage(galleryPage + 1)">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== FACULTY TAB ======================== -->
+    <section *ngIf="activeTab === 'faculty'" class="tab-panel">
+      <div class="toolbar">
+        <button type="button" class="btn-primary-action" (click)="showAddFaculty()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+          </svg>
+          Add Faculty Member
+        </button>
+      </div>
+
+      <div class="filters-bar card-custom">
+        <label class="field field-inline">
+          <span class="field-label">Search by name</span>
+          <input type="search" [(ngModel)]="facultySearch" name="facultySearch" placeholder="Name" (ngModelChange)="onFacultyFilterChange()" />
+        </label>
+        <label class="field field-inline">
+          <span class="field-label">Designation</span>
+          <select [(ngModel)]="facultyDesignation" name="facultyDesignation" (ngModelChange)="onFacultyFilterChange()">
+            <option value="all">All</option>
+            <option *ngFor="let d of designationOptions" [value]="d">{{ d }}</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="empty-state card-custom" *ngIf="filteredFacultyList.length === 0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+        </svg>
+        <p>No faculty members found. Click "Add Faculty Member" to get started.</p>
+      </div>
+
+      <ul class="item-list card-custom list-card" *ngIf="filteredFacultyList.length > 0">
+        <li
+          *ngFor="let member of filteredFacultyList"
+          class="list-row"
+          [class.row-hidden]="member.isActive === false"
+        >
+          <img
+            *ngIf="showPhoto(member.id, member.photoUrl)"
+            class="thumb thumb-circle"
+            [src]="member.photoUrl!"
+            [alt]="member.name"
+            (error)="onImgError(member.id)"
+          />
+          <img
+            *ngIf="!showPhoto(member.id, member.photoUrl)"
+            class="thumb thumb-circle"
+            [src]="getAvatarUri(member.gender)"
+            [alt]="member.name"
+          />
+          <div class="row-main">
+            <div class="row-title">{{ member.name }}</div>
+            <div class="row-meta">
+              <span class="meta-badge">{{ member.designation }}</span>
+              <span *ngIf="member.department">{{ member.department }}</span>
+            </div>
+          </div>
+          <label class="toggle-wrap">
+            <input
+              type="checkbox"
+              [checked]="member.isActive !== false"
+              (change)="toggleFaculty(member)"
+            />
+            <span>{{ member.isActive !== false ? 'Active' : 'Hidden' }}</span>
+          </label>
+          <div class="row-actions">
+            <button type="button" class="btn-secondary-sm" (click)="openFacultyEdit(member)">Edit</button>
+            <button type="button" class="btn-danger-sm" (click)="deleteFaculty(member)">Delete</button>
+          </div>
+        </li>
+      </ul>
+
+      <div class="pagination card-custom" *ngIf="facultyTotalPages > 1">
+        <span class="page-info">Page {{ facultyPage }} of {{ facultyTotalPages }} ({{ facultyTotal }} total)</span>
+        <div class="page-buttons">
+          <button type="button" class="btn-secondary-sm" [disabled]="facultyPage <= 1" (click)="goFacultyPage(facultyPage - 1)">Previous</button>
+          <button type="button" class="btn-secondary-sm" *ngFor="let p of visibleFacultyPages" [class.page-active]="facultyPage === p" (click)="goFacultyPage(p)">{{ p }}</button>
+          <button type="button" class="btn-secondary-sm" [disabled]="facultyPage >= facultyTotalPages" (click)="goFacultyPage(facultyPage + 1)">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== RESULTS TAB ======================== -->
+    <section *ngIf="activeTab === 'results'" class="tab-panel">
+      <div class="toolbar">
+        <button type="button" class="btn-primary-action" (click)="showAddResult()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+          </svg>
+          Add Student Result
+        </button>
+        <p class="tab-description">
+          Add board exam results here. Students will appear on the public Results page sorted by percentage.
+        </p>
+      </div>
+
+      <div class="filters-bar card-custom">
+        <label class="field field-inline">
+          <span class="field-label">Year</span>
+          <select [(ngModel)]="resultsYear" name="resultsYear" (ngModelChange)="applyResultsFilters()">
+            <option [ngValue]="null">All years</option>
+            <option *ngFor="let y of resultYearsOptions" [ngValue]="y">{{ y }}</option>
+          </select>
+        </label>
+        <label class="field field-inline">
+          <span class="field-label">Board</span>
+          <select [(ngModel)]="resultsBoard" name="resultsBoard" (ngModelChange)="applyResultsFilters()">
+            <option value="">All boards</option>
+            <option value="CBSE">CBSE</option>
+            <option value="RBSE">RBSE</option>
+          </select>
+        </label>
+        <label class="field field-inline field-grow">
+          <span class="field-label">Search by name</span>
+          <input type="search" [(ngModel)]="resultsSearch" name="resultsSearch" placeholder="Student name" />
+        </label>
+        <button type="button" class="btn-secondary-sm btn-filter-apply" (click)="applyResultsFilters()">Search</button>
+      </div>
+
+      <div class="empty-state card-custom" *ngIf="resultsList.length === 0 && resultsTotal === 0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+          <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.272.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"/>
+        </svg>
+        <p>No student results found. Click "Add Student Result" to add board exam results.</p>
+        <p class="empty-hint">
+          Results will appear on the public <strong>Results</strong> page once added here.
+        </p>
+      </div>
+
+      <ul class="item-list card-custom list-card" *ngIf="resultsList.length > 0">
+        <li *ngFor="let row of resultsList" class="list-row">
+          <img
+            *ngIf="showPhoto(row.id, row.photoUrl)"
+            class="thumb"
+            [src]="row.photoUrl!"
+            [alt]="row.name"
+            (error)="onImgError(row.id)"
+          />
+          <img
+            *ngIf="!showPhoto(row.id, row.photoUrl)"
+            class="thumb"
+            [src]="getAvatarUri(row.gender)"
+            [alt]="row.name"
+          />
+          <div class="row-main">
+            <div class="row-title">{{ row.name }}</div>
+            <div class="row-meta">
+              <span class="meta-badge">{{ row.board }}</span>
+              <span>{{ row.year }}</span>
+              <span class="percentage-badge">{{ row.percentage }}%</span>
+            </div>
+          </div>
+          <div class="row-actions">
+            <button type="button" class="btn-secondary-sm" (click)="openResultEdit(row)">Edit</button>
+            <button type="button" class="btn-danger-sm" (click)="deleteResult(row)">Delete</button>
+          </div>
+        </li>
+      </ul>
+
+      <div class="pagination card-custom" *ngIf="resultsTotalPages > 1 || resultsTotal > 0">
+        <span class="page-info">
+          Page {{ resultsPage }} of {{ resultsTotalPages }} ({{ resultsTotal }} total)
+        </span>
+        <div class="page-buttons">
+          <button type="button" class="btn-secondary-sm" [disabled]="resultsPage <= 1" (click)="goResultsPage(resultsPage - 1)">
+            Previous
+          </button>
+          <button
+            type="button"
+            class="btn-secondary-sm"
+            *ngFor="let p of visibleResultPages"
+            [class.page-active]="resultsPage === p"
+            (click)="goResultsPage(p)"
+          >
+            {{ p }}
+          </button>
+          <button
+            type="button"
+            class="btn-secondary-sm"
+            [disabled]="resultsPage >= resultsTotalPages"
+            (click)="goResultsPage(resultsPage + 1)"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== MESSAGES TAB ======================== -->
+    <section *ngIf="activeTab === 'messages'" class="tab-panel">
+      <div class="empty-state card-custom" *ngIf="messagesList.length === 0 && messagesTotal === 0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+        </svg>
+        <p>No messages yet. Messages from the Contact Us form will appear here.</p>
+      </div>
+
+      <ul class="item-list card-custom list-card" *ngIf="messagesList.length > 0">
+        <li
+          *ngFor="let msg of messagesList"
+          class="list-row message-row"
+          [class.message-unread]="!msg.isRead"
+          (click)="openMessage(msg)"
+        >
+          <div class="message-dot" *ngIf="!msg.isRead"></div>
+          <div class="row-main">
+            <div class="row-title">{{ msg.name }}</div>
+            <div class="row-meta">
+              <span>{{ msg.email }}</span>
+              <span *ngIf="msg.mobile">{{ msg.mobile }}</span>
+              <span>{{ formatDate(msg.createdAt) }}</span>
+            </div>
+            <p class="message-preview">{{ msg.message }}</p>
+          </div>
+          <div class="row-actions">
+            <button type="button" class="btn-danger-sm" (click)="deleteMessage(msg); $event.stopPropagation()">Delete</button>
+          </div>
+        </li>
+      </ul>
+
+      <div class="pagination card-custom" *ngIf="messagesTotalPages > 1">
+        <span class="page-info">Page {{ messagesPage }} of {{ messagesTotalPages }} ({{ messagesTotal }} total)</span>
+        <div class="page-buttons">
+          <button type="button" class="btn-secondary-sm" [disabled]="messagesPage <= 1" (click)="goMessagesPage(messagesPage - 1)">Previous</button>
+          <button
+            type="button"
+            class="btn-secondary-sm"
+            *ngFor="let p of visibleMessagePages"
+            [class.page-active]="messagesPage === p"
+            (click)="goMessagesPage(p)"
+          >{{ p }}</button>
+          <button type="button" class="btn-secondary-sm" [disabled]="messagesPage >= messagesTotalPages" (click)="goMessagesPage(messagesPage + 1)">Next</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Message detail overlay -->
+  <div class="form-overlay" *ngIf="selectedMessage" (click.self)="closeMessage()">
+    <div class="form-panel card-custom" (click)="$event.stopPropagation()">
+      <div class="form-panel-header">
+        <h2 class="section-heading">Message from {{ selectedMessage.name }}</h2>
+        <button type="button" class="btn-close-panel" (click)="closeMessage()">&times;</button>
+      </div>
+      <div class="message-detail-grid">
+        <div class="message-detail-field">
+          <span class="message-detail-label">Name</span>
+          <span>{{ selectedMessage.name }}</span>
+        </div>
+        <div class="message-detail-field">
+          <span class="message-detail-label">Email</span>
+          <a [href]="'mailto:' + selectedMessage.email">{{ selectedMessage.email }}</a>
+        </div>
+        <div class="message-detail-field" *ngIf="selectedMessage.mobile">
+          <span class="message-detail-label">Mobile</span>
+          <a [href]="'tel:' + selectedMessage.mobile">{{ selectedMessage.mobile }}</a>
+        </div>
+        <div class="message-detail-field">
+          <span class="message-detail-label">Date</span>
+          <span>{{ formatDate(selectedMessage.createdAt) }}</span>
+        </div>
+      </div>
+      <div class="message-detail-body">
+        <span class="message-detail-label">Message</span>
+        <p>{{ selectedMessage.message }}</p>
+      </div>
+      <div class="form-actions">
+        <a [href]="'mailto:' + selectedMessage.email + '?subject=Re: Contact from Alok Central School'" class="btn-primary-action">Reply via Email</a>
+        <button type="button" class="btn-danger-sm" (click)="deleteMessage(selectedMessage)">Delete</button>
+        <button type="button" class="btn-secondary-sm" (click)="closeMessage()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== GALLERY EDIT OVERLAY ======================== -->
+  <div class="form-overlay" *ngIf="galleryEditVisible" (click.self)="cancelGalleryEdit()">
+    <div class="form-panel card-custom" (click)="$event.stopPropagation()">
+      <div class="form-panel-header">
+        <h2 class="section-heading">Edit Gallery Image</h2>
+        <button type="button" class="btn-close-panel" (click)="cancelGalleryEdit()">&times;</button>
+      </div>
+      <div class="form-alert" *ngIf="formError" role="alert">{{ formError }}</div>
+      <label class="field">
+        <span class="field-label">Title</span>
+        <input type="text" [(ngModel)]="galleryEditForm.title" name="geTitle" required />
+      </label>
+      <label class="field">
+        <span class="field-label">Category</span>
+        <select [(ngModel)]="galleryEditForm.category" name="geCategory">
+          <option *ngFor="let c of galleryCategories" [value]="c">{{ c }}</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label">Alt text</span>
+        <input type="text" [(ngModel)]="galleryEditForm.alt" name="geAlt" />
+      </label>
+      <div class="form-actions">
+        <button type="button" class="btn-primary-action" (click)="saveGalleryEdit()">Save Changes</button>
+        <button type="button" class="btn-secondary-sm" (click)="cancelGalleryEdit()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== FACULTY FORM OVERLAY ======================== -->
+  <div class="form-overlay" *ngIf="facultyFormVisible" (click.self)="cancelFacultyForm()">
+    <div class="form-panel card-custom" (click)="$event.stopPropagation()">
+      <div class="form-panel-header">
+        <h2 class="section-heading">{{ editingFaculty ? 'Edit Faculty Member' : 'Add Faculty Member' }}</h2>
+        <button type="button" class="btn-close-panel" (click)="cancelFacultyForm()">&times;</button>
+      </div>
+      <div class="form-alert" *ngIf="formError" role="alert">{{ formError }}</div>
+      <div class="form-grid-2">
+        <label class="field">
+          <span class="field-label">Name <span class="req">*</span></span>
+          <input type="text" [(ngModel)]="facultyForm.name" name="ffName" required />
+        </label>
+        <label class="field">
+          <span class="field-label">Designation <span class="req">*</span></span>
+          <select [(ngModel)]="facultyForm.designation" name="ffDesignation" (ngModelChange)="onDesignationChange()">
+            <option *ngFor="let d of designationOptions" [value]="d">{{ d }}</option>
+          </select>
+          <input
+            *ngIf="showCustomDesignation"
+            type="text"
+            [(ngModel)]="customDesignation"
+            name="ffCustomDesignation"
+            placeholder="Enter custom designation"
+            class="custom-input-below"
+          />
+        </label>
+        <label class="field">
+          <span class="field-label">Gender <span class="req">*</span></span>
+          <select [(ngModel)]="facultyForm.gender" name="ffGender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <label class="field field-span-2">
+          <span class="field-label">Photo</span>
+          <input type="file" accept="image/jpeg,image/png,image/webp" (change)="onFacultyPhotoSelected($event)" />
+        </label>
+        <label class="field">
+          <span class="field-label">Department</span>
+          <input type="text" [(ngModel)]="facultyForm.department" name="ffDept" placeholder="e.g. Mathematics" />
+        </label>
+        <label class="field">
+          <span class="field-label">Qualification</span>
+          <input type="text" [(ngModel)]="facultyForm.qualification" name="ffQual" placeholder="e.g. M.A., B.Ed." />
+        </label>
+        <label class="field">
+          <span class="field-label">Experience</span>
+          <input type="text" [(ngModel)]="facultyForm.experience" name="ffExp" placeholder="e.g. 15 years" />
+        </label>
+        <label class="field">
+          <span class="field-label">Email</span>
+          <input type="email" [(ngModel)]="facultyForm.email" name="ffEmail" />
+        </label>
+        <label class="field field-span-2">
+          <span class="field-label">Phone</span>
+          <input type="tel" [(ngModel)]="facultyForm.phone" name="ffPhone" />
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-primary-action" (click)="saveFaculty()">
+          {{ editingFaculty ? 'Save Changes' : 'Add Faculty' }}
+        </button>
+        <button type="button" class="btn-secondary-sm" (click)="cancelFacultyForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== RESULTS FORM OVERLAY ======================== -->
+  <div class="form-overlay" *ngIf="resultsFormVisible" (click.self)="cancelResultForm()">
+    <div class="form-panel card-custom form-panel-wide" (click)="$event.stopPropagation()">
+      <div class="form-panel-header">
+        <h2 class="section-heading">{{ editingResult ? 'Edit Student Result' : 'Add Student Result' }}</h2>
+        <button type="button" class="btn-close-panel" (click)="cancelResultForm()">&times;</button>
+      </div>
+      <div class="form-alert" *ngIf="formError" role="alert">{{ formError }}</div>
+      <div class="form-grid-2">
+        <label class="field">
+          <span class="field-label">Year <span class="req">*</span></span>
+          <input type="number" [(ngModel)]="resultForm.year" name="rfYear" min="1990" max="2100" />
+        </label>
+        <label class="field">
+          <span class="field-label">Board <span class="req">*</span></span>
+          <select [(ngModel)]="resultForm.board" name="rfBoard">
+            <option value="CBSE">CBSE</option>
+            <option value="RBSE">RBSE</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field-label">Student Name <span class="req">*</span></span>
+          <input type="text" [(ngModel)]="resultForm.name" name="rfName" required placeholder="Full name" />
+        </label>
+        <label class="field">
+          <span class="field-label">Father's Name <span class="req">*</span></span>
+          <input type="text" [(ngModel)]="resultForm.fatherName" name="rfFather" required />
+        </label>
+        <label class="field">
+          <span class="field-label">Gender <span class="req">*</span></span>
+          <select [(ngModel)]="resultForm.gender" name="rfGender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field-label">Percentage <span class="req">*</span></span>
+          <input type="number" [(ngModel)]="resultForm.percentage" name="rfPct" min="0" max="100" step="0.01" placeholder="e.g. 95.4" />
+        </label>
+        <label class="field">
+          <span class="field-label">Roll Number</span>
+          <input type="text" [(ngModel)]="resultForm.rollNumber" name="rfRoll" />
+        </label>
+        <label class="field">
+          <span class="field-label">Date of Birth</span>
+          <input type="date" [(ngModel)]="resultForm.dob" name="rfDob" />
+        </label>
+        <label class="field">
+          <span class="field-label">Admission No.</span>
+          <input type="text" [(ngModel)]="resultForm.admissionNo" name="rfAdm" />
+        </label>
+        <label class="field">
+          <span class="field-label">Contact Number</span>
+          <input type="tel" [(ngModel)]="resultForm.contactNumber" name="rfContact" />
+        </label>
+        <label class="field field-span-2">
+          <span class="field-label">Photo</span>
+          <input type="file" accept="image/jpeg,image/png,image/webp" (change)="onResultPhotoSelected($event)" />
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-primary-action" (click)="saveResult()">
+          {{ editingResult ? 'Save Changes' : 'Add Result' }}
+        </button>
+        <button type="button" class="btn-secondary-sm" (click)="cancelResultForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== CONFIRM DIALOG ======================== -->
+  <div class="confirm-overlay" *ngIf="confirmVisible" (click)="onConfirmCancel()">
+    <div class="confirm-dialog card-custom" (click)="$event.stopPropagation()">
+      <div class="confirm-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+      </div>
+      <h3 class="confirm-title">{{ confirmTitle }}</h3>
+      <p class="confirm-message">{{ confirmMessage }}</p>
+      <div class="confirm-actions">
+        <button type="button" class="btn-confirm-delete" (click)="onConfirmYes()">Yes, Delete</button>
+        <button type="button" class="btn-confirm-cancel" (click)="onConfirmCancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

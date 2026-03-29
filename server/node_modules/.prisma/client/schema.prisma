@@ -1,0 +1,91 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model AdminUser {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("admin_users")
+}
+
+model GalleryImage {
+  id         String   @id @default(uuid())
+  title      String
+  category   String
+  alt        String?
+  s3Url      String   @map("s3_url")
+  s3Key      String   @map("s3_key")
+  date       DateTime @default(now())
+  isActive   Boolean  @default(true) @map("is_active")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  uploadedBy String?  @map("uploaded_by")
+
+  @@map("gallery_images")
+}
+
+model FacultyMember {
+  id            String    @id @default(uuid())
+  name          String
+  designation   String
+  gender        String    @default("Male")
+  department    String?
+  qualification String?
+  experience    String?
+  email         String?
+  phone         String?
+  photoUrl      String?   @map("photo_url")
+  photoKey      String?   @map("photo_key")
+  bio           String?
+  joiningDate   DateTime? @map("joining_date")
+  isActive      Boolean   @default(true) @map("is_active")
+  displayOrder  Int       @default(0) @map("display_order")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@map("faculty_members")
+}
+
+model StudentResult {
+  id            String    @id @default(uuid())
+  name          String
+  fatherName    String    @map("father_name")
+  gender        String
+  percentage    Float
+  board         String
+  year          Int
+  rollNumber    String?   @map("roll_number")
+  dob           DateTime? @map("dob")
+  admissionNo   String?   @map("admission_no")
+  contactNumber String?   @map("contact_number")
+  photoUrl      String?   @map("photo_url")
+  photoKey      String?   @map("photo_key")
+  className     String    @default("10th") @map("class_name")
+  isActive      Boolean   @default(true) @map("is_active")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@map("student_results")
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  mobile    String?
+  message   String
+  isRead    Boolean  @default(false) @map("is_read")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("contact_messages")
+}

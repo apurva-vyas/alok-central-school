@@ -4,61 +4,61 @@ overview: "Full-stack admin panel: Angular frontend + Express.js backend in one 
 todos:
   - id: e1
     content: Create server/ directory with Express project, Prisma schema, and configs
-    status: pending
+    status: completed
   - id: e2
     content: "Set up Prisma: schema.prisma with AdminUser + GalleryImage models, generate client"
-    status: pending
+    status: completed
   - id: e3
     content: "Build auth routes: login (bcrypt verify + JWT sign), logout, seed admin user script"
-    status: pending
+    status: completed
   - id: e4
     content: "Build gallery routes: list (public), upload (S3 + Prisma), delete (S3 + Prisma)"
-    status: pending
+    status: completed
   - id: e5
     content: Add JWT auth middleware for protected routes
-    status: pending
+    status: completed
   - id: e6
     content: Create Angular auth service, gallery API service, and auth guard
-    status: pending
+    status: completed
   - id: e7
     content: Create login component (email + password form)
-    status: pending
+    status: completed
   - id: e8
     content: Create admin dashboard component (drag-drop upload, image grid, edit/delete)
-    status: pending
+    status: completed
   - id: e9
     content: Create Moments component (new dynamic gallery, behind feature flag)
-    status: pending
+    status: completed
   - id: e10
     content: Add feature flag system and update routing (old Gallery vs new Moments)
-    status: pending
+    status: completed
   - id: e11
     content: Register all components, add /login, /admin (guarded), /moments routes
-    status: pending
+    status: completed
   - id: e12
     content: Create amplify.yml for combined frontend + backend deployment
-    status: pending
+    status: completed
   - id: e13
     content: Add FacultyMember model to Prisma schema with all fields + display order
-    status: pending
+    status: completed
   - id: e14
     content: "Build faculty Express routes: list (public, sorted), create/update/toggle/delete (admin)"
-    status: pending
+    status: completed
   - id: e15
     content: Create Angular faculty API service
-    status: pending
+    status: completed
   - id: e16
     content: Create public Our Faculty page (Principal on top, grouped by designation)
-    status: pending
+    status: completed
   - id: e17
     content: Create admin faculty management panel (add/edit/disable/reorder faculty)
-    status: pending
+    status: completed
   - id: e18
     content: Add 'Our Faculty' to ABOUT dropdown in navbar
-    status: pending
+    status: completed
   - id: e19
     content: "Test full flow: login, upload, gallery, faculty CRUD, logout"
-    status: pending
+    status: completed
 isProject: false
 ---
 

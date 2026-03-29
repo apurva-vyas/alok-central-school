@@ -1,11 +1,10 @@
-<app-page-hero [image]="heroImage" title="Contact Us"></app-page-hero>
-
 <section class="contact-section section-padding">
   <div class="site-container">
+    <h1 class="page-title" appReveal="fade-up">Contact Us</h1>
     <div class="contact-grid">
 
       <div class="contact-left">
-        <div class="contact-info card-custom">
+        <div class="contact-info card-custom" appReveal="slide-right">
           <h3>Get in Touch</h3>
           <div class="info-item">
             <app-icon name="location" [size]="20"></app-icon>
@@ -29,17 +28,61 @@
           </div>
         </div>
 
-        <div class="contact-map card-custom">
-          <iframe src="https://maps.google.com/maps?q=Alok+Central+School+Shahpura+Bhilwara+Rajasthan&output=embed"
+        <div class="contact-map card-custom" appReveal="slide-right" [revealDelay]="200">
+          <iframe src="https://maps.google.com/maps?q=Alok+Central+School+NH+148D+Kalyanpura+Shahpura+Rural+Rajasthan+311404+India&t=&z=16&ie=UTF8&iwloc=&output=embed"
                   width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-                  title="Alok Central School Location"></iframe>
+                  title="Alok Central School, NH 148D, Kalyanpura, Shahpura Rural, Rajasthan"></iframe>
         </div>
       </div>
 
-      <div class="contact-form card-custom">
-        <iframe [src]="contactFormUrl"
-                width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0"
-                title="Contact Form">Loading...</iframe>
+      <div class="contact-form card-custom" appReveal="slide-left" [revealDelay]="150">
+        <!-- Success State -->
+        <div class="form-success" *ngIf="submitted">
+          <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          </div>
+          <h3>Thank You!</h3>
+          <p>Your message has been sent successfully. We will get back to you soon.</p>
+          <button type="button" class="btn-send-another" (click)="resetForm()">Send Another Message</button>
+        </div>
+
+        <!-- Form -->
+        <form *ngIf="!submitted" (ngSubmit)="onSubmit()" class="custom-contact-form" novalidate>
+          <h3>Send us a Message</h3>
+
+          <div class="form-error" *ngIf="errorMessage" role="alert">{{ errorMessage }}</div>
+
+          <div class="form-field">
+            <label for="cf-name">Name <span class="req">*</span></label>
+            <input id="cf-name" type="text" [(ngModel)]="form.name" name="name" placeholder="Your full name" [disabled]="submitting" />
+          </div>
+
+          <div class="form-field">
+            <label for="cf-mobile">Mobile Number <span class="req">*</span></label>
+            <div class="mobile-input-group">
+              <select [(ngModel)]="selectedCountryCode" name="countryCode" class="country-code-select" [disabled]="submitting">
+                <option *ngFor="let c of countryCodes" [value]="c.code">{{ c.flag }} {{ c.code }}</option>
+              </select>
+              <input id="cf-mobile" type="tel" [(ngModel)]="form.mobile" name="mobile" placeholder="98765 43210" [disabled]="submitting" class="mobile-number-input" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" [(ngModel)]="form.email" name="email" placeholder="your@email.com (optional)" [disabled]="submitting" />
+          </div>
+
+          <div class="form-field">
+            <label for="cf-message">Message <span class="req">*</span></label>
+            <textarea id="cf-message" [(ngModel)]="form.message" name="message" rows="5" placeholder="How can we help you?" [disabled]="submitting"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" [disabled]="submitting">
+            {{ submitting ? 'Sending...' : 'Send Message' }}
+          </button>
+        </form>
       </div>
 
     </div>

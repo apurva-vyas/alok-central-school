@@ -1,0 +1,44 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci --include=dev
+    build:
+      commands:
+        - npm run build -- --configuration=production
+  artifacts:
+    baseDirectory: dist/hello
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+  customHeaders:
+    - pattern: '**/*'
+      headers:
+        - key: Cache-Control
+          value: 'public, max-age=31536000, immutable'
+    - pattern: 'index.html'
+      headers:
+        - key: Cache-Control
+          value: 'no-cache, no-store, must-revalidate'
+backend:
+  phases:
+    preBuild:
+      commands:
+        - (cd server && npm ci --include=dev)
+    build:
+      commands:
+        - (cd server && npx prisma generate && npm run build)
+    postBuild:
+      commands:
+        - (cd server && npm prune --omit=dev)
+        - mkdir -p /tmp/lambda-pkg && cp -r server/dist/* /tmp/lambda-pkg/ && cp -r server/node_modules /tmp/lambda-pkg/ && cp -r server/prisma /tmp/lambda-pkg/
+        - (cd /tmp/lambda-pkg && zip -qr /tmp/lambda.zip .)
+        - aws s3 cp /tmp/lambda.zip s3://alok-central-school/deploy/lambda.zip
+        - aws lambda update-function-code --function-name alok-central-school-api --s3-bucket alok-central-school --s3-key deploy/lambda.zip --region ap-south-1
+  artifacts:
+    baseDirectory: server/dist
+    files:
+      - '**/*'

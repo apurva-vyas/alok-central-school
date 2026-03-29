@@ -1,2 +1,40 @@
 <app-carousel></app-carousel>
+
+<!-- Quick Stats -->
+<section class="stats-section" #statsSection>
+  <div class="site-container">
+    <div class="stats-grid">
+      <div class="stat-item" *ngFor="let s of stats; let i = index"
+           appReveal="fade-up" [revealDelay]="i * 120">
+        <span class="stat-value">{{ s.display }}<span class="stat-suffix">{{ s.suffix }}</span></span>
+        <span class="stat-label">{{ s.label }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <features></features>
+
+<!-- Location Context for SEO -->
+<section class="location-section section-padding">
+  <div class="site-container">
+    <div class="location-content" appReveal="fade-up">
+      <h2>Best School in Shahpura, Bhilwara</h2>
+      <p>Alok Central School is proudly located in Shahpura, Bhilwara district, Rajasthan. For over two decades, we have been the preferred choice for parents seeking quality education in Shahpura and surrounding areas. Our commitment to academic excellence, holistic development, and modern teaching methods makes us the leading school in the Shahpura region.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+  <div class="site-container">
+    <div class="cta-content" appReveal="fade-up">
+      <h2>Ready to Join Our Family?</h2>
+      <p>Give your child the best start at the top school in Shahpura — quality education, modern facilities, and a nurturing environment in the heart of Bhilwara district.</p>
+      <div class="cta-buttons">
+        <a routerLink="admission" class="cta-btn cta-btn--primary">Apply for Admission</a>
+        <a routerLink="contact" class="cta-btn cta-btn--secondary">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
