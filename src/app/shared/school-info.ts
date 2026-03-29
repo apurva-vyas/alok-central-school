@@ -11,8 +11,8 @@ export const SCHOOL_INFO = {
   whatsappChatUrl: 'https://wa.me/917014559002',
   address: {
     line1: 'Alok Central School',
-    line2: 'Shahpura, Bhilwara',
-    line3: 'Rajasthan, 311404',
+    line2: 'NH 148D, Kalyanpura, Shahpura Rural',
+    line3: 'Rajasthan 311404, India',
     mapUrl: 'https://maps.app.goo.gl/qKvotw9g1PG4oqjB9',
   },
   social: {

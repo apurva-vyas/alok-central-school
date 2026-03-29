@@ -36,7 +36,7 @@ const ROUTE_SEO: Record<string, SeoData> = {
   '/contact': {
     title: `Contact Us — ${SITE_NAME} | Shahpura, Bhilwara`,
     description:
-      'Contact Alok Central School, Shahpura, Bhilwara, Rajasthan. Phone: 01484-222244, Mobile: 9413270929. Visit us at Kalyanpura, Shahpura 311404.',
+      'Contact Alok Central School, Shahpura, Bhilwara, Rajasthan. Phone: 01484-222244, Mobile: 9413270929. Visit us at NH 148D, Kalyanpura, Shahpura Rural 311404.',
   },
   '/gallery': {
     title: `Photo Gallery — ${SITE_NAME}`,
