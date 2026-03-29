@@ -15,7 +15,11 @@ import { IMAGES } from '../shared/image-registry';
 export class CarouselComponent {
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
 
-  images = [...IMAGES.carousel];
+  slides = IMAGES.carousel.map((src, i) =>
+    i === 0
+      ? { src, alt: 'Alok Central School building front view in Shahpura, Bhilwara' }
+      : { src, alt: 'Alok Central School campus aerial view, Shahpura, Rajasthan' }
+  );
 
   paused = false;
   unpauseOnArrow = true;

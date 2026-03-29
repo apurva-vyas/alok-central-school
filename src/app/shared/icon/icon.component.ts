@@ -23,7 +23,8 @@ const ICON_PATHS: Record<string, string> = {
   template: `
     <svg xmlns="http://www.w3.org/2000/svg"
          [attr.width]="size" [attr.height]="size"
-         fill="currentColor" viewBox="0 0 16 16">
+         fill="currentColor" viewBox="0 0 16 16"
+         aria-hidden="true" focusable="false">
       <path *ngFor="let p of paths" [attr.d]="p"/>
     </svg>
   `,

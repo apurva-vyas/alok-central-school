@@ -1,13 +1,18 @@
-<div class="hero-carousel">
+<section class="hero-carousel" aria-label="School highlights">
   <ngb-carousel #carousel [interval]="4000" [pauseOnHover]="pauseOnHover"
                 [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)"
                 [showNavigationIndicators]="true" [showNavigationArrows]="true">
 
-    <ng-template ngbSlide *ngFor="let img of images">
+    <ng-template ngbSlide *ngFor="let slide of slides; let i = index">
       <div class="slide-wrapper">
-        <img [src]="img" alt="Alok Central School Shahpura — Best School in Shahpura, Bhilwara, Rajasthan" />
+        <img [src]="slide.src" [alt]="slide.alt" />
       </div>
     </ng-template>
 
   </ngb-carousel>
-</div>
+
+  <div class="hero-overlay" aria-hidden="true">
+    <h1 class="hero-title">Alok Central School, Shahpura</h1>
+    <p class="hero-subtitle">The Best School in Shahpura, Bhilwara, Rajasthan</p>
+  </div>
+</section>
