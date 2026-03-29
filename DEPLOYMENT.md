@@ -168,9 +168,9 @@ Go to **Amplify Console → Hosting → Rewrites and redirects → Manage redire
 
 | Source | Target | Type |
 |--------|--------|------|
-| `/<*>` | `/index.html` | 200 (Rewrite) |
+| `</^[^.]+$/>` | `/index.html` | 200 (Rewrite) |
 
-This enables Angular's client-side routing (deep links like `/faculty`, `/admin` won't 404).
+This regex rewrites only paths **without** a file extension to `index.html` (for Angular client-side routing). Static files like `sitemap.xml`, `robots.txt`, and `favicon.ico` are served directly.
 
 ## Step 6: Deploy
 
