@@ -45,5 +45,17 @@
       </div>
     </div>
 
+    <!-- FAQ -->
+    <div class="about-block" appReveal="fade-up" [revealDelay]="450">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item card-custom" *ngFor="let faq of faqs; let i = index"
+                 appReveal="fade-up" [revealDelay]="500 + i * 100">
+          <summary class="faq-question">{{ faq.q }}</summary>
+          <p class="faq-answer">{{ faq.a }}</p>
+        </details>
+      </div>
+    </div>
+
   </div>
 </section>

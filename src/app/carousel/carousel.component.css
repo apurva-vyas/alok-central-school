@@ -29,6 +29,35 @@
   opacity: 1;
 }
 
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+  text-align: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 var(--space-xs);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle {
+  font-size: clamp(0.85rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
 ::ng-deep .hero-carousel .carousel-indicators {
   z-index: 5;
 }
