@@ -84,11 +84,15 @@
   margin: 0 auto var(--space-md);
   width: clamp(100px, 12vw, 140px);
   height: clamp(100px, 12vw, 140px);
+  max-width: 60%;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .faculty-photo-wrap--principal {
   width: clamp(140px, 18vw, 200px);
   height: clamp(140px, 18vw, 200px);
+  max-width: 70%;
 }
 
 .faculty-photo {

@@ -16,7 +16,7 @@ import { Component, Input } from '@angular/core';
     </div>
   `,
   styles: [`
-    :host { display: inline-block; }
+    :host { display: block; width: 100%; height: 100%; }
     .avatar-wrap {
       border-radius: 50%;
       background: linear-gradient(135deg, #4A90D9 0%, #357ABD 100%);
@@ -27,6 +27,9 @@ import { Component, Input } from '@angular/core';
       overflow: hidden;
       border: 3px solid #4A90D9;
       box-sizing: border-box;
+      max-width: 100%;
+      max-height: 100%;
+      aspect-ratio: 1;
     }
     .avatar-wrap svg {
       width: 58%;

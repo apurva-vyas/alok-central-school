@@ -177,6 +177,9 @@
   margin: 0 auto var(--space-sm);
   width: clamp(80px, 10vw, 120px);
   height: clamp(80px, 10vw, 120px);
+  max-width: 65%;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .student-photo {
@@ -302,7 +305,10 @@
 .detail-photo-wrap {
   width: clamp(120px, 28vw, 180px);
   height: clamp(120px, 28vw, 180px);
+  max-width: 50%;
   margin: 0 auto var(--space-md);
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .detail-photo {
