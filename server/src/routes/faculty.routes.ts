@@ -20,26 +20,38 @@ const upload = multer({
 const DESIGNATION_ORDER = ['Director', 'Principal', 'Vice Principal', 'Head Teacher', 'Teacher', 'PET', 'Librarian', 'Other'];
 const SINGLE_DESIGNATIONS = ['Director', 'Principal', 'Vice Principal'];
 
+function sortByDisplayOrder<T extends { displayOrder: number; name: string }>(items: T[]): T[] {
+  return items.sort((a, b) => {
+    const ao = a.displayOrder || 0;
+    const bo = b.displayOrder || 0;
+    if (ao === 0 && bo === 0) return a.name.localeCompare(b.name);
+    if (ao === 0) return 1;
+    if (bo === 0) return -1;
+    return ao - bo || a.name.localeCompare(b.name);
+  });
+}
+
 router.get('/faculty', async (_req: Request, res: Response) => {
   try {
     const faculty = await prisma.facultyMember.findMany({
       where: { isActive: true },
-      orderBy: [{ displayOrder: 'asc' }, { name: 'asc' }],
-      select: { id: true, name: true, designation: true, gender: true, photoUrl: true, department: true },
+      select: { id: true, name: true, designation: true, gender: true, photoUrl: true, department: true, displayOrder: true },
     });
+
+    const sorted = sortByDisplayOrder(faculty);
 
     const grouped: { designation: string; members: typeof faculty }[] = [];
     const placed = new Set<string>();
 
     for (const d of DESIGNATION_ORDER) {
-      const members = faculty.filter(f => f.designation === d);
+      const members = sorted.filter(f => f.designation === d);
       if (members.length > 0) {
         grouped.push({ designation: d, members });
         members.forEach(m => placed.add(m.id));
       }
     }
 
-    const customMembers = faculty.filter(f => !placed.has(f.id));
+    const customMembers = sorted.filter(f => !placed.has(f.id));
     if (customMembers.length > 0) {
       const customGroups = new Map<string, typeof faculty>();
       for (const m of customMembers) {
@@ -69,10 +81,8 @@ router.get('/faculty/:id', async (req: Request, res: Response) => {
 
 router.get('/admin/faculty', authMiddleware, async (_req: AuthRequest, res: Response) => {
   try {
-    const faculty = await prisma.facultyMember.findMany({
-      orderBy: [{ displayOrder: 'asc' }, { name: 'asc' }],
-    });
-    res.json(faculty);
+    const faculty = await prisma.facultyMember.findMany();
+    res.json(sortByDisplayOrder(faculty));
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch faculty' });
   }
@@ -80,7 +90,7 @@ router.get('/admin/faculty', authMiddleware, async (_req: AuthRequest, res: Resp
 
 router.post('/faculty', authMiddleware, upload.single('file'), async (req: AuthRequest, res: Response) => {
   try {
-    const { name, designation, gender, department, qualification, experience, email, phone, bio, joiningDate } = req.body;
+    const { name, designation, gender, department, qualification, experience, email, phone, bio, joiningDate, displayOrder } = req.body;
     if (!name || !designation) return res.status(400).json({ error: 'Name and designation are required' });
 
     if (SINGLE_DESIGNATIONS.includes(designation.trim())) {
@@ -118,6 +128,7 @@ router.post('/faculty', authMiddleware, upload.single('file'), async (req: AuthR
         phone: phone?.trim(),
         bio: bio?.trim(),
         joiningDate: joiningDate ? new Date(joiningDate) : undefined,
+        displayOrder: displayOrder ? parseInt(displayOrder) : 0,
         photoUrl,
         photoKey,
       },
@@ -142,7 +153,7 @@ router.put('/faculty/:id', authMiddleware, upload.single('file'), async (req: Au
       photoKey = result.s3Key;
     }
 
-    const { name, designation, gender, department, qualification, experience, email, phone, bio, joiningDate } = req.body;
+    const { name, designation, gender, department, qualification, experience, email, phone, bio, joiningDate, displayOrder } = req.body;
 
     if (designation && SINGLE_DESIGNATIONS.includes(designation.trim()) && designation.trim() !== existing.designation) {
       const holder = await prisma.facultyMember.findFirst({
@@ -168,6 +179,7 @@ router.put('/faculty/:id', authMiddleware, upload.single('file'), async (req: Au
         ...(phone !== undefined && { phone: phone?.trim() || null }),
         ...(bio !== undefined && { bio: bio?.trim() || null }),
         ...(joiningDate !== undefined && { joiningDate: joiningDate ? new Date(joiningDate) : null }),
+        ...(displayOrder !== undefined && { displayOrder: parseInt(displayOrder) || 0 }),
         photoUrl,
         photoKey,
       },

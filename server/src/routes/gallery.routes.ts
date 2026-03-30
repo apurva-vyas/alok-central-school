@@ -38,9 +38,18 @@ router.get('/gallery', async (req: Request, res: Response) => {
 
     const images = await prisma.galleryImage.findMany({
       where,
-      orderBy: { date: 'desc' },
-      select: { id: true, title: true, category: true, alt: true, s3Url: true, date: true },
+      select: { id: true, title: true, category: true, alt: true, s3Url: true, date: true, displayOrder: true },
     });
+
+    images.sort((a, b) => {
+      const ao = a.displayOrder || 0;
+      const bo = b.displayOrder || 0;
+      if (ao === 0 && bo === 0) return new Date(b.date).getTime() - new Date(a.date).getTime();
+      if (ao === 0) return 1;
+      if (bo === 0) return -1;
+      return ao - bo;
+    });
+
     res.json(images);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch gallery' });
@@ -49,7 +58,15 @@ router.get('/gallery', async (req: Request, res: Response) => {
 
 router.get('/admin/gallery', authMiddleware, async (_req: AuthRequest, res: Response) => {
   try {
-    const images = await prisma.galleryImage.findMany({ orderBy: { date: 'desc' } });
+    const images = await prisma.galleryImage.findMany();
+    images.sort((a, b) => {
+      const ao = a.displayOrder || 0;
+      const bo = b.displayOrder || 0;
+      if (ao === 0 && bo === 0) return new Date(b.date).getTime() - new Date(a.date).getTime();
+      if (ao === 0) return 1;
+      if (bo === 0) return -1;
+      return ao - bo;
+    });
     res.json(images);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch gallery' });
@@ -59,7 +76,7 @@ router.get('/admin/gallery', authMiddleware, async (_req: AuthRequest, res: Resp
 router.post('/upload', authMiddleware, upload.single('file'), async (req: AuthRequest, res: Response) => {
   try {
     if (!req.file) return res.status(400).json({ error: 'Image file is required' });
-    const { category, alt, date } = req.body;
+    const { category, alt, date, displayOrder } = req.body;
     if (!category) return res.status(400).json({ error: 'Category is required' });
     const title = req.body.title?.trim() || req.file.originalname.replace(/\.[^/.]+$/, '').replace(/[_\-]+/g, ' ');
 
@@ -82,6 +99,7 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req: AuthRe
         s3Url,
         s3Key,
         date: date ? new Date(date) : new Date(),
+        displayOrder: displayOrder ? parseInt(displayOrder) : 0,
         uploadedBy: req.user?.id,
       },
     });
@@ -93,7 +111,7 @@ router.post('/upload', authMiddleware, upload.single('file'), async (req: AuthRe
 
 router.put('/gallery/:id', authMiddleware, async (req: AuthRequest, res: Response) => {
   try {
-    const { title, category, alt, date } = req.body;
+    const { title, category, alt, date, displayOrder } = req.body;
     const image = await prisma.galleryImage.update({
       where: { id: req.params.id },
       data: {
@@ -101,6 +119,7 @@ router.put('/gallery/:id', authMiddleware, async (req: AuthRequest, res: Respons
         ...(category && { category: category.trim() }),
         ...(alt !== undefined && { alt: alt.trim() }),
         ...(date && { date: new Date(date) }),
+        ...(displayOrder !== undefined && { displayOrder: parseInt(displayOrder) || 0 }),
       },
     });
     res.json(image);

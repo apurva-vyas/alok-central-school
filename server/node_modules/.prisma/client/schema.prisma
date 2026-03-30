@@ -19,17 +19,18 @@ model AdminUser {
 }
 
 model GalleryImage {
-  id         String   @id @default(uuid())
-  title      String
-  category   String
-  alt        String?
-  s3Url      String   @map("s3_url")
-  s3Key      String   @map("s3_key")
-  date       DateTime @default(now())
-  isActive   Boolean  @default(true) @map("is_active")
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
-  uploadedBy String?  @map("uploaded_by")
+  id           String   @id @default(uuid())
+  title        String
+  category     String
+  alt          String?
+  s3Url        String   @map("s3_url")
+  s3Key        String   @map("s3_key")
+  date         DateTime @default(now())
+  isActive     Boolean  @default(true) @map("is_active")
+  displayOrder Int      @default(0) @map("display_order")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  uploadedBy   String?  @map("uploaded_by")
 
   @@map("gallery_images")
 }

@@ -97,6 +97,11 @@
             <input type="text" [(ngModel)]="uploadTitle" name="uploadTitle" placeholder="Leave blank for auto-title" />
           </label>
 
+          <label class="field">
+            <span class="field-label">Sort Order <span class="field-hint">(optional)</span></span>
+            <input type="number" [(ngModel)]="uploadDisplayOrder" name="uploadDisplayOrder" min="0" placeholder="Leave blank to show last" />
+          </label>
+
           <div class="field">
             <span class="field-label">Category <span class="req">*</span></span>
             <div class="category-select-row">
@@ -198,6 +203,7 @@
             <div class="row-meta">
               <span class="meta-badge">{{ item.category }}</span>
               <span>{{ formatDate(item.date) }}</span>
+              <span *ngIf="item.displayOrder" class="meta-badge">Order: {{ item.displayOrder }}</span>
             </div>
           </div>
           <label class="toggle-wrap">
@@ -281,6 +287,7 @@
             <div class="row-meta">
               <span class="meta-badge">{{ member.designation }}</span>
               <span *ngIf="member.department">{{ member.department }}</span>
+              <span *ngIf="member.displayOrder" class="meta-badge">Order: {{ member.displayOrder }}</span>
             </div>
           </div>
           <label class="toggle-wrap">
@@ -523,6 +530,10 @@
         <span class="field-label">Alt text</span>
         <input type="text" [(ngModel)]="galleryEditForm.alt" name="geAlt" />
       </label>
+      <label class="field">
+        <span class="field-label">Sort Order <span class="field-hint">(optional)</span></span>
+        <input type="number" [(ngModel)]="galleryEditForm.displayOrder" name="geDisplayOrder" min="0" placeholder="Leave blank to show last" />
+      </label>
       <div class="form-actions">
         <button type="button" class="btn-primary-action" (click)="saveGalleryEdit()">Save Changes</button>
         <button type="button" class="btn-secondary-sm" (click)="cancelGalleryEdit()">Cancel</button>
@@ -585,9 +596,13 @@
           <span class="field-label">Email</span>
           <input type="email" [(ngModel)]="facultyForm.email" name="ffEmail" />
         </label>
-        <label class="field field-span-2">
+        <label class="field">
           <span class="field-label">Phone</span>
           <input type="tel" [(ngModel)]="facultyForm.phone" name="ffPhone" />
+        </label>
+        <label class="field">
+          <span class="field-label">Sort Order <span class="field-hint">(optional)</span></span>
+          <input type="number" [(ngModel)]="facultyForm.displayOrder" name="ffDisplayOrder" min="0" placeholder="Leave blank to show last" />
         </label>
       </div>
       <div class="form-actions">
