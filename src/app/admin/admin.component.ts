@@ -55,6 +55,7 @@ export class AdminComponent implements OnInit {
   uploadFiles: File[] = [];
   uploadTitle = '';
   uploadCategory = 'Events';
+  uploadDisplayOrder: number | null = null;
   uploading = false;
   uploadProgress = 0;
   uploadTotal = 0;
@@ -70,6 +71,7 @@ export class AdminComponent implements OnInit {
     experience: '',
     email: '',
     phone: '',
+    displayOrder: null as number | null,
   };
   facultyPhotoFile: File | null = null;
 
@@ -91,7 +93,7 @@ export class AdminComponent implements OnInit {
 
   galleryEditVisible = false;
   editingGallery: GalleryImageDTO | null = null;
-  galleryEditForm = { title: '', category: '', alt: '' };
+  galleryEditForm = { title: '', category: '', alt: '', displayOrder: null as number | null };
 
   /** Merged from existing gallery + DB. Populated in ngOnInit. */
   galleryCategories: string[] = [];
@@ -476,6 +478,7 @@ export class AdminComponent implements OnInit {
 
     const category = this.uploadCategory;
     const customTitle = this.uploadTitle.trim();
+    const displayOrder = this.uploadDisplayOrder ?? undefined;
     let completed = 0;
     let failed = 0;
 
@@ -484,6 +487,7 @@ export class AdminComponent implements OnInit {
         this.uploading = false;
         this.uploadFiles = [];
         this.uploadTitle = '';
+        this.uploadDisplayOrder = null;
         if (failed > 0) {
           this.errorMessage = `${failed} of ${this.uploadTotal} uploads failed.`;
         }
@@ -499,7 +503,7 @@ export class AdminComponent implements OnInit {
         ? customTitle
         : this.titleFromFilename(file.name);
 
-      this.galleryApi.upload(file, title, category).subscribe({
+      this.galleryApi.upload(file, title, category, undefined, displayOrder).subscribe({
         next: () => {
           completed++;
           this.uploadProgress = completed + failed;
@@ -525,6 +529,7 @@ export class AdminComponent implements OnInit {
       title: item.title,
       category: item.category,
       alt: item.alt ?? '',
+      displayOrder: item.displayOrder || null,
     };
     this.galleryEditVisible = true;
   }
@@ -544,11 +549,13 @@ export class AdminComponent implements OnInit {
     }
     this.formError = '';
     this.clearMessages();
+    const { displayOrder } = this.galleryEditForm;
     this.galleryApi
       .update(this.editingGallery.id, {
         title: title.trim(),
         category,
         alt: alt.trim() || null,
+        displayOrder: displayOrder ?? 0,
       })
       .subscribe({
         next: updated => {
@@ -605,6 +612,7 @@ export class AdminComponent implements OnInit {
       experience: '',
       email: '',
       phone: '',
+      displayOrder: null,
     };
     this.facultyPhotoFile = null;
     this.formError = '';
@@ -625,6 +633,7 @@ export class AdminComponent implements OnInit {
       experience: member.experience ?? '',
       email: member.email ?? '',
       phone: member.phone ?? '',
+      displayOrder: member.displayOrder || null,
     };
     this.showCustomDesignation = !isStandard;
     this.customDesignation = isStandard ? '' : member.designation;
@@ -666,6 +675,11 @@ export class AdminComponent implements OnInit {
     }
     if (this.facultyForm.phone.trim()) {
       fd.append('phone', this.facultyForm.phone.trim());
+    }
+    if (this.facultyForm.displayOrder) {
+      fd.append('displayOrder', String(this.facultyForm.displayOrder));
+    } else {
+      fd.append('displayOrder', '0');
     }
     if (this.facultyPhotoFile) {
       fd.append('file', this.facultyPhotoFile, this.facultyPhotoFile.name);

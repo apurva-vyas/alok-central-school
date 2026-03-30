@@ -11,6 +11,7 @@ export interface GalleryImageDTO {
   s3Url: string;
   date: string;
   isActive?: boolean;
+  displayOrder?: number;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -32,12 +33,13 @@ export class GalleryApiService {
     return this.http.get<GalleryImageDTO[]>(`${this.api}/admin/gallery`);
   }
 
-  upload(file: File, title: string, category: string, date?: string): Observable<GalleryImageDTO> {
+  upload(file: File, title: string, category: string, date?: string, displayOrder?: number): Observable<GalleryImageDTO> {
     const fd = new FormData();
     fd.append('file', file);
     fd.append('title', title);
     fd.append('category', category);
     if (date) fd.append('date', date);
+    if (displayOrder) fd.append('displayOrder', String(displayOrder));
     return this.http.post<GalleryImageDTO>(`${this.api}/upload`, fd);
   }
 
